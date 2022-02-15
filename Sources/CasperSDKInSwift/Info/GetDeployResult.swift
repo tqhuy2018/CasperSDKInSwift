@@ -1,14 +1,7 @@
-//
-//  File.swift
-//  
-//
-//  Created by Hien on 25/12/2021.
-//
-
 import Foundation
-public class GetDeployParams {
-    
-}
+
 public class GetDeployResult {
-    
+    public var deploy:Deploy = Deploy();
+    public var execution_results:[JsonExecutionResult] = [JsonExecutionResult]();
+    public var api_version:ProtocolVersion =  ProtocolVersion();//1.4.3
 }

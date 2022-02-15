@@ -1,61 +1,31 @@
-//
-//  GetBalance.swift
-//  SampleRPCCall1
-//
-//  Created by Hien on 13/12/2021.
-//
-//https://docs.rs/casper-node/latest/casper_node/rpcs/state/struct.GetBalance.html
-//DATA BACK
-/*
- ["jsonrpc": 2.0, "error": {
-     code = "-32602";
-     data = "<null>";
-     message = "Invalid params";
- }, "id": 1]
- */
 import Foundation
-class GetBalance : RpcWithParamsExt,RpcWithParams {
-    let methodStr : String = "state_get_balance"
-    let methodURL : String = "http://65.21.227.180:7777/rpc"
-    func handle_request () {
-        //var ret : GetPeersResult = GetPeersResult();
-        let parameters = ["id": 1, "method": methodStr,"params":"[]","jsonrpc":"2.0"] as [String : Any]
-            //create the url with URL
-            let url = URL(string: methodURL)! //change the url
-//create the session object
-            let session = URLSession.shared
-   //now create the URLRequest object using the url object
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST" //set http method as POST
-            do {
-                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-            } catch let error {
-                print(error.localizedDescription)
+class GetBalance {
+    public static func getStateBalanceFromJson(from:[String:Any])throws -> GetBalanceResult {
+        do {
+            if let error = from["error"] as AnyObject? {
+                var code:Int!
+                var message:String!
+                if let code1 = error["code"] as? Int {
+                    code = code1
+                }
+                if let message1 = error["message"] as? String {
+                    message = message1
+                }
+                throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "state_get_balance")
             }
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-    
-//create dataTask using the session object to send data to the server
-
-            let task = session.dataTask(with: request as URLRequest, completionHandler: {
-                data, response, error in
-                    guard error == nil else {
-                    return
+            let ret:GetBalanceResult = GetBalanceResult();
+            if let result = from["result"] as? [String:Any] {
+                if let api_version = result["api_version"] as? String {
+                    ret.api_version = ProtocolVersion.strToProtocol(from: api_version)
                 }
-                guard let data = data else {
-                    return
+                if let balance_value = result["balance_value"] as? String {
+                    ret.balance_value = U512Class.fromStringToU512(from: balance_value)
                 }
-                do {
-                    //create json object from data
-                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                        print("JSON BACK:\(json)")
-                    }
-                } catch let error {
-                    print(error.localizedDescription)
+                if let merkle_proof = result["merkle_proof"] as? String {
+                    ret.merkle_proof = merkle_proof
                 }
-            })
-            task.resume()
-       // return ret;
+            }
+            return ret;
+        }
     }
 }

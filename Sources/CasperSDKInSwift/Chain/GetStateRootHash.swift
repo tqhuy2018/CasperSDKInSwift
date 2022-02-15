@@ -1,20 +1,5 @@
-//
-//  GetStateRootHash.swift
-//  SampleRPCCall1
-//
-//  Created by Hien on 09/12/2021.
-//
-//https://docs.rs/casper-node/latest/casper_node/rpcs/chain/struct.GetStateRootHash.html
-
-//DATA BACK LIKE THIS
-/*
- ["result": {
-     "api_version" = "1.4.3";
-     "state_root_hash" = 1b0e70c9c78873867E317b184Ce1723162d6956fad9E8e4b1897D6f505c5e496;
- }, "id": 1, "jsonrpc": 2.0]
- */
-
 import Foundation
+
 enum GetStateRootHashError: Error {
     case invalidURL
     case parseError
@@ -22,52 +7,35 @@ enum GetStateRootHashError: Error {
     case blockNotFound
     case blockHeightError
 }
+public class GetStateRootHashParam{
+    public var block_identifier:BlockIdentifier = .None
+}
 class GetStateRootHash {
-    @available(iOS 15.0.0, *)
-    public static func getStateRootHash(params:Any)async throws -> String {
-        let methodStr : String = "chain_get_state_root_hash";
+    public static func getStateRootHash(from:[String:Any]) throws ->String {
         do {
-            let json = try await HttpHandler.handleRequest(method:methodStr,params: params);
-            if let error = json["error"] as? AnyObject {
-                if let code = error["code"] as? Int32 {
-                  //  print("error code:\(code)")
-                    if code == -32700 {
-                        throw GetStateRootHashError.parseError;
-                    } else if code == -32601 {
-                        throw GetStateRootHashError.methodNotFound
-                    } else if code == -32001 {
-                        throw GetStateRootHashError.blockNotFound
-                    } else {
-                        throw GetStateRootHashError.invalidURL
-                    }
+            if let error = from["error"] as AnyObject? {
+                var code:Int!
+                var message:String!
+                if let code1 = error["code"] as? Int {
+                    code = code1
                 }
-                if let message = error["message"] as? String {
-                  //  print("message:\(message)")
-                } else {
-                    //print("Can not show message in error")
+                if let message1 = error["message"] as? String {
+                    message = message1
                 }
+                throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "chain_get_state_root_hash")
             }
-            if let result = json["result"] as? AnyObject {
-                if let api_version = result["api_version"] as? String {
-                   // print("----IN ASYNC Api_version:\(api_version)")
-                } else {
-                  //  print("Can not get api_version in result")
-                }
-                if let state_root_hash = result["state_root_hash"] as? String{
-                  //  print("-----IN ASYNC stateRootHash:\(state_root_hash)")
-                    return state_root_hash
-                } else {
-                 //   print("Error get state root hash")
-                    throw GetStateRootHashError.parseError
-                }
+        }
+        if let result = from["result"] as AnyObject? {
+            if let _ = result["api_version"] as? String {
             } else {
-                //print("error get json result")
+            }
+            if let state_root_hash = result["state_root_hash"] as? String{
+                return state_root_hash
+            } else {
                 throw GetStateRootHashError.parseError
             }
-        } catch {
-           // print("GetStateRootHash - getStateRootHash function called, ERROR GET STATE ROOT HASH 2: \(error)")
-            throw error
+        } else {
+            throw GetStateRootHashError.parseError
         }
-       // throw CasperMethodError.unknown
     }
 }
