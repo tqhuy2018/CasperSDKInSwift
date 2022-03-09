@@ -1,6 +1,13 @@
 import Foundation
-
+/**
+ class for CLType and CLValue serialization
+ */
 public class CLTypeSerializeHelper {
+    /**
+     Serialize for CLType
+     - Parameter : CLType
+     - Returns: String represent the serialization of the CLType of the input
+     */
     public static func CLTypeSerialize(input:CLType) -> String {
         switch input {
         case .Bool:
@@ -30,35 +37,38 @@ public class CLTypeSerializeHelper {
         case .Key:
             return "0c"
         case .PublicKey:
-            //no return
-            break;
+            return "16"
         case .Option(let cLType):
-            return "0d"
-        case .List(let cLType):
-            return "0e"
-        case .BytesArray(let uInt32):
-            return "0f"//review again
-            break;
-        case .Result(let cLType1, let cLType2):
+            return "0d" + CLTypeSerialize(input: cLType)
+        case .List(let clType):
+            return "0e" + CLTypeSerialize(input: clType)
+        case .BytesArray(_):
+            return "0f"
+        case .Result(_, _):
             return "10"
-        case .Map(let cLType1, let cLType2):
+        case .Map(_, _):
             return "11"
-        case .Tuple1(let cLType):
+        case .Tuple1(_):
             return "12"
-        case .Tuple2(let cLType1, let cLType2):
+        case .Tuple2(_, _):
             return "13"
-        case .Tuple3(let cLType1, let cLType2, let cLType3):
+        case .Tuple3(_, _, _):
             return "14"
         case .CLAny:
             return "15"
         case .NONE:
-            //no return
-            break;
+            return ""
         default:
-            return "-1"
+            return ""
         }
-       return "-1"
     }
+    /**
+     Serialize for CLValue
+     - Parameters:
+        - CLValue, wrapped in a CLValueWrapper object
+        - withPrefix0x - if set to true then the serialization String will be with prefix "0x", otherwise no prefix "0x" is added. The default value is false.
+     - Returns: String represent the serialization of the CLValue of the input
+     */
     public static func CLValueSerialize(input:CLValueWrapper,withPrefix0x:Bool = false)throws -> String {
         switch input {
         case .Bool(let bool):
@@ -94,7 +104,7 @@ public class CLTypeSerializeHelper {
             } catch (CasperError.invalidNumber) {
                 throw CasperError.invalidNumber
             }
-        case .Unit(let string):
+        case .Unit(_):
             return ""
         case .String(let string):
             return CLTypeSerializeHelper.StringSerialize(input: string,withPrefix0x:withPrefix0x)
@@ -125,16 +135,19 @@ public class CLTypeSerializeHelper {
                 let accessRight:String = String(elements[2].suffix(2))
                 return result + accessRight
             }
-            break
         case .PublicKey(let string):
             return string
-            break
         case .BytesArray(let string):
             return string
-            break
         case .OptionWrapper(let cLValueWrapper):
             switch cLValueWrapper {
             case .NONE:
+                if withPrefix0x {
+                    return "0x00"
+                } else {
+                    return "00"
+                }
+            case .NULL:
                 if withPrefix0x {
                     return "0x00"
                 } else {
@@ -156,6 +169,9 @@ public class CLTypeSerializeHelper {
             
         case .ListWrapper(let array):
             let arraySize:UInt32 = UInt32(array.count)
+            if (arraySize == 0) {
+                return ""
+            }
             var result = CLTypeSerializeHelper.UInt32Serialize(input: arraySize)
             do {
                 for e in array {
@@ -209,8 +225,217 @@ public class CLTypeSerializeHelper {
                 }
             }
             
-        case .MapWrapper(let array1, let array2):
-            return ""
+        case .MapWrapper(let keyArray, let valueArray):
+            if keyArray.count == 0 {
+                return "00000000"
+            }
+            let firstKeyItem : CLValueWrapper = keyArray[0];
+            let comparableString =  CLValue.getComparableType(clValue:  firstKeyItem)
+            if comparableString != "none" {
+                let mapSize:UInt32 = UInt32(keyArray.count);
+                //get the prefix of UInt32 serialization of the element number of the map
+                var result:String = CLTypeSerializeHelper.UInt32Serialize(input: mapSize);
+                if comparableString == "String" {
+                    var listKey:[String]  = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfStringType(clValue: key))
+                    }
+                    var dict:[String:CLValueWrapper] = [:]
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i]] = valueArray[i]
+                    }
+                    listKey = listKey.sorted{$0<$1}
+                    for sortedKey in listKey {
+                        let keySerialize = CLTypeSerializeHelper.StringSerialize(input: sortedKey);
+                        let valueForKey = dict[sortedKey]!;
+                        do {
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                } else if comparableString == "I32" {
+                    var listKey:[Int32] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfI32(clValue: key))
+                    }
+                    var dict:[Int32:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i]] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0<$1}
+                    for sortedKey in listKey {
+                        let keySerialize = CLTypeSerializeHelper.Int32Serialize(input:sortedKey);
+                        let valueForKey = dict[sortedKey]!;
+                        do {
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "I64" {
+                    var listKey:[Int64] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfI64(clValue: key))
+                    }
+                    var dict:[Int64:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i]] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0<$1}
+                    for sortedKey in listKey {
+                        let keySerialize = CLTypeSerializeHelper.Int64Serialize(input:sortedKey);
+                        let valueForKey = dict[sortedKey]!;
+                        do {
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "UInt8" {
+                    var listKey:[UInt8] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfU8(clValue: key))
+                    }
+                    var dict:[UInt8:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i]] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0<$1}
+                    for sortedKey in listKey {
+                        let keySerialize = CLTypeSerializeHelper.UInt8Serialize(input:sortedKey);
+                        let valueForKey = dict[sortedKey]!;
+                        do {
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "UInt32" {
+                    var listKey:[UInt32] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfU32(clValue: key))
+                    }
+                    var dict:[UInt32:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i]] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0<$1}
+                    for sortedKey in listKey {
+                        let keySerialize = CLTypeSerializeHelper.UInt32Serialize(input: sortedKey);
+                        let valueForKey = dict[sortedKey]!;
+                        do {
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "UInt64" {
+                    var listKey:[UInt64] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfU64(clValue: key))
+                    }
+                    var dict:[UInt64:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i]] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0<$1}
+                    for sortedKey in listKey {
+                        let keySerialize = CLTypeSerializeHelper.UInt64Serialize(input: sortedKey);
+                        let valueForKey = dict[sortedKey]!;
+                        do {
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "U128" {
+                    var listKey:[U128Class] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfU128(clValue: key))
+                    }
+                    var dict:[String:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i].valueInStr] = valueArray[i];
+                    }
+                    Utils.sortU128Array(array: &listKey);
+                    for sortedKey in listKey {
+                        do {
+                            let keySerialize = try CLTypeSerializeHelper.U128Serialize(input: sortedKey.valueInStr);
+                            let valueForKey = dict[sortedKey.valueInStr]!;
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "U256" {
+                    var listKey:[U256Class] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfU256(clValue: key))
+                    }
+                    var dict:[String:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i].valueInStr] = valueArray[i];
+                    }
+                    Utils.sortU256Array(array:&listKey);
+                    for sortedKey in listKey {
+                        do {
+                            let keySerialize = try CLTypeSerializeHelper.U256Serialize(input:sortedKey.valueInStr);
+                            let valueForKey = dict[sortedKey.valueInStr]!;
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "U512" {
+                    var listKey:[U512Class] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfU512(clValue:key))
+                    }
+                    var dict:[String:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i].valueInStr] = valueArray[i];
+                    }
+                    Utils.sortU512Array(array:&listKey);
+                    for sortedKey in listKey {
+                        do {
+                            let keySerialize = try CLTypeSerializeHelper.U512Serialize(input: sortedKey.valueInStr);
+                            let valueForKey = dict[sortedKey.valueInStr]!;
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+            } else {
+                return "";
+            }
+            
             
         case .Tuple1Wrapper(let cLValueWrapper):
             do {
@@ -251,7 +476,7 @@ public class CLTypeSerializeHelper {
                 throw CasperError.invalidNumber
             }
             
-        case .AnyCLValue(let anyObject):
+        case .AnyCLValue(_):
             //non-serializable object
             break
         case .NULL:
@@ -261,14 +486,25 @@ public class CLTypeSerializeHelper {
         }
         return ""
     }
+    
+    /**
+     Serialize for CLValue of CLType Bool
+     - Parameters:bool value
+     - Returns: String with value "01" if input == true,  "00" if input == false
+     */
     public static func BoolSerialize(input:Bool)->String {
         if input == true {
             return "01"
         }
         return "00"
     }
+    /**
+     Serialize for CLValue of CLType Int32
+     - Parameters:Int32 value
+     - Returns: Serialization of UInt32 if input >= 0.
+     If input < 0 Serialization of UInt32.max complement to the input
+     */
     
-     //if the input is negative then the value is UInt32.max + input then UInt32 serialize with the value
     public static func Int32Serialize(input:Int32)->String {
         if input >= 0 {
             return CLTypeSerializeHelper.UInt32Serialize(input: UInt32(input))
@@ -278,6 +514,12 @@ public class CLTypeSerializeHelper {
             return CLTypeSerializeHelper.UInt32Serialize(input: UInt32(input3))
         }
     }
+    /**
+     Serialize for CLValue of CLType Int64
+     - Parameters:Int64 value
+     - Returns: Serialization of UInt64 if input >= 0.
+     If input < 0 Serialization of UInt64.max complement to the input
+     */
     public static func Int64Serialize(input:Int64)->String {
         if input >= 0 {
             return CLTypeSerializeHelper.UInt64Serialize(input: UInt64(input))
@@ -287,6 +529,11 @@ public class CLTypeSerializeHelper {
             return CLTypeSerializeHelper.UInt64Serialize(input: UInt64(input3))
         }
     }
+    /**
+     Serialize for CLValue of CLType UInt8
+     - Parameters:UInt8 value
+     - Returns: String represents the serialization of UInt8, which is a String of size 2. Example: Input UInt8(15) then output is "0f"
+     */
     public static func UInt8Serialize(input:UInt8,withPrefix0x:Bool = false)->String{
         let value = UInt8(bigEndian: input)
         if withPrefix0x {
@@ -295,10 +542,12 @@ public class CLTypeSerializeHelper {
             return String(format:"%02x",value.littleEndian)
         }
     }
-    public static func UInt8SerializeRaw(input:UInt8)->String{
-        let value = UInt8(bigEndian: input)
-        return String(format:"%02x",value.littleEndian)
-    }
+    /**
+     Serialize for CLValue of CLType UInt32
+     - Parameters:UInt32 value
+     - Returns: String represents the serialization of UInt32 in little endian, which is a String of size 8. Example: Input UInt32(15) then output is "0f000000"
+     */
+    
     public static func UInt32Serialize(input:UInt32,withPrefix0x:Bool = false)->String {
         let value = UInt32(bigEndian: input)
         if withPrefix0x {
@@ -307,7 +556,11 @@ public class CLTypeSerializeHelper {
             return String(format:"%08x",value.littleEndian)
         }
     }
-   
+    /**
+     Serialize for CLValue of CLType UInt64
+     - Parameters:UInt64 value
+     - Returns: String represents the serialization of UInt64 in little endian, which is a String of size 16. Example: Input UInt32(15) then output is "0f00000000000000"
+     */
     public static func UInt64Serialize(input:UInt64,withPrefix0x:Bool = false) -> String {
         return CLTypeSerializeHelper.SmallNumberSerialize(input: String(input), numBytes: 8,withPrefix0x : withPrefix0x)
     }
@@ -391,6 +644,12 @@ public class CLTypeSerializeHelper {
             
         }
     }
+    /**
+     Serialize for CLValue of CLType U512 - big number
+     - Parameters:U512 value in String format
+     - Throws:CasperError.invalidNumber if the input String can not convert to number
+     - Returns: String represents the serialization of U512 in little endian, with first byte represent the length of the serialization string, next is the serialization string. Example: Input U512("15") then output is "010f"
+     */
     public static func U512Serialize(input:String,withPrefix0x:Bool = false) throws -> String {
         do {
            let ret = try CLTypeSerializeHelper.BigNumberSerialize(input: input,withPrefix0x: withPrefix0x)
@@ -399,6 +658,12 @@ public class CLTypeSerializeHelper {
             throw CasperError.invalidNumber
         }
     }
+    /**
+     Serialize for CLValue of CLType U256 - big number
+     - Parameters:U256 value in String format
+     - Throws:CasperError.invalidNumber if the input String can not convert to number
+     - Returns: String represents the serialization of U256 in little endian, with first byte represent the length of the serialization string, next is the serialization string. Example: Input U256("15") then output is "010f"
+     */
     public static func U256Serialize(input:String,withPrefix0x:Bool = false) throws -> String {
         do {
            let ret = try CLTypeSerializeHelper.BigNumberSerialize(input: input,withPrefix0x: withPrefix0x)
@@ -407,6 +672,12 @@ public class CLTypeSerializeHelper {
             throw CasperError.invalidNumber
         }
     }
+    /**
+     Serialize for CLValue of CLType U128 - big number
+     - Parameters:U128 value in String format
+     - Throws:CasperError.invalidNumber if the input String can not convert to number
+     - Returns: String represents the serialization of U256 in little endian, with first byte represent the length of the serialization string, next is the serialization string. Example: Input U128("15") then output is "010f"
+     */
     public static func U128Serialize(input:String,withPrefix0x:Bool = false) throws -> String {
         do {
            let ret = try CLTypeSerializeHelper.BigNumberSerialize(input: input,withPrefix0x: withPrefix0x)
@@ -415,7 +686,16 @@ public class CLTypeSerializeHelper {
             throw CasperError.invalidNumber
         }
     }
+    /**
+     Serialize for  big number in general - this function is used to deal with U512, U256 and U128 Serialization
+     - Parameters:Big number value in String format
+     - Throws:CasperError.invalidNumber if the String can not convert to number
+     - Returns: String represents the serialization of big number in little endian, with first byte represent the length of the serialization string, next is the serialization string. Example: Input ("15") then output is "010f"
+     */
     public static func BigNumberSerialize(input:String,withPrefix0x:Bool = false) throws ->String {
+        if input == "0" {
+            return "00"
+        }
         if input.isNumeric {
             let numberSerialize:String = CLTypeSerializeHelper.NumberSerialize(input: input)
             return CLTypeSerializeHelper.fromBigToLittleEdian(input: numberSerialize,withPrefix0x:withPrefix0x)
@@ -430,6 +710,11 @@ public class CLTypeSerializeHelper {
         result = CLTypeSerializeHelper.fromBigToLittleEdianU64AndLess(input: numberSerialize,numBytes: numBytes,withPrefix0x:withPrefix0x)
         return result
     }
+    /**
+     Serialize for big number to hexa String
+     - Parameters:Big number in String format
+     - Returns: String represents the serialization of Big number in little endian. Example: Input ("999888666555444999887988887777666655556666777888999666999") then output is "37f578fca55492f299ea354eaca52b6e9de47d592453c728"
+     */
     public static func NumberSerialize(input:String) ->  String {
         var result:String = "";
         if input.isNumeric {
@@ -521,16 +806,27 @@ public class CLTypeSerializeHelper {
         }
         return result
     }
+    /**
+     Serialize for CLValue of CLType String
+     - Parameters:String value
+     - Returns: String represents the serialization of the input String, with the Serialization of UInt32(String.length) of the input concatenated with the String serialization itself.
+     Example:input "Hello, World!" will be serialized as "0d00000048656c6c6f2c20576f726c6421"
+        or "lWJWKdZUEudSakJzw1tn" will be serialized as "140000006c574a574b645a5545756453616b4a7a7731746e"
+     */
     public static func StringSerialize(input:String,withPrefix0x:Bool = false)->String {
         var result = ""
         let strLength : UInt32 = UInt32(input.count)
         result = CLTypeSerializeHelper.UInt32Serialize(input: strLength, withPrefix0x: withPrefix0x)
         for v in input.utf8 {
-            let hexaCode =  CLTypeSerializeHelper.UInt8SerializeRaw(input: UInt8(exactly: v)!)
+            let hexaCode =  CLTypeSerializeHelper.UInt8Serialize(input: UInt8(exactly: v)!)
             result = result + hexaCode
         }
         return result
     }
+    /**
+     Serialize for CLValue of CLType String
+        Just return emtpy String
+     */
     public static func UnitSerialize()->String {
         return ""
     }

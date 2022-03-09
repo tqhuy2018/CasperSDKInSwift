@@ -1,4 +1,8 @@
 import Foundation
+/**
+ Enumeration type represents the StoredValue
+ */
+
 public enum StoredValue {
     case    CLValue(CLValue)
     case    Account(Account)
@@ -12,7 +16,17 @@ public enum StoredValue {
     case    Withdraw([UnbondingPurse])
     case    None
 }
+/**
+ Class supports the getting of StoredValue from Json String
+ */
+
 public class StoredValueHelper {
+    /**
+       Get StoredValue object from Json string
+       - Parameter : a Json String represents the StoredValue object
+       - Returns: StoredValue object
+       */
+
     public static func getStoredValue(from:[String:Any])->StoredValue {
         var retResult:StoredValue = .None
         if let accountJson = from["Account"] as? [String:Any] {
@@ -248,7 +262,6 @@ public class StoredValueHelper {
         let eraInfo : EraInfo = EraInfo();
         if let seigniorageAllocations = from["seigniorage_allocations"] as? [AnyObject] {
             eraInfo.listSeigniorageAllocation = [SeigniorageAllocation]();
-            let totalSei = seigniorageAllocations.count;
             var totalDelegator = 0;
             var totalValidator = 0;
             for sei in seigniorageAllocations {
@@ -302,10 +315,10 @@ public class StoredValueHelper {
             retBid.vesting_schedule = VestingSchedule.jsonToVestingSchedule(from: vesting_schedule)
         }
         if let delegators = from["delegators"] as? [String:AnyObject] {
-            let totalDelegator = delegators.count
-            var counter:Int = 0;
+           
+           
             for (key,value) in delegators {
-                counter += 1;
+               
                 let oneDelegator:Delegator = Delegator();
                 if let validator_public_key = value ["validator_public_key"] as? String{
                     oneDelegator.validator_public_key = PublicKey.strToPublicKey(from: validator_public_key)

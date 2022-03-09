@@ -1,7 +1,14 @@
 import Foundation
-
+/**
+ Class for GetBlock from Json String
+ */
 class GetBlock {
-    
+    /**
+     Get block from Json string
+     - Parameter : a Json String represents the Block object
+     - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
+     - Returns: GetBlockResult object
+     */
     public static func getBlock(from:[String:Any]) throws -> GetBlockResult {
         do {
             if let error = from["error"] as AnyObject? {

@@ -3,7 +3,7 @@
 
 Swift sdk library for interacting with a CSPR node.
 
-## What is casper-swift-sdk ?
+## What is casper-swift-sdk?
 
 SDK  to streamline the 3rd party Swift client integration processes. Such 3rd parties include exchanges & app developers. 
 
@@ -15,24 +15,29 @@ The SDK use Swift 5.0 and support device running IOS from 10.0, MacOS from 10.4.
 
 ## Build and test from terminal 
 
-Go to the SKD root folder.
+Go to the SDK root folder.
 
 - Build command in terminal, type this in terminal
 
+```swift
 swift build
+```
 
 - Test command in terminal, type this in terminal
 
+```swift
 swift test
+```
 
-- For a full build,test on the SKD, run the following command
+- For a full build,test on the SDK, run the following command
 
+```swift
 swift package clean
 
 swift build
 
 swift test
-
+```
 
 ## Build and test from Xcode IDE
 
@@ -40,11 +45,59 @@ In Project Targets select the project General setting, Scroll to “Frameworks, 
 
 Now you can call the Casper RPC methods through the CasperSDK class.
 
-Just put the following code
+Put the following code:
 
 "import CasperSDKInSwift"
 
-at the beginning of the file to refer for CasperSDK instance and call the method request
+at the beginning of the file to refer for CasperSDK instance and call the method request.
+
+# Information for Secp256k1, Ed25519 Key Wrapper and Put Deploy
+
+## Key wrapper specification:
+
+The Key wrapper do the following work:(for both Secp256k1 and Ed25519):
+
+- (PrivateKey,PublicKey) generation
+
+- Sign message 
+
+- Verify message
+
+- Read PrivateKey/PublicKey from PEM file
+
+- Write PrivateKey/PublicKey to PEM file
+
+The key wrapper is used in account_put_deploy RPC method to generate approvals signature based on deploy hash.
+
+## Put deploy specification:
+
+The put deploy RPC method implements the call "account_put_deploy". User needs to declare a deploy and assign the information for the deploy (header,payment,session,approvals). The following information is generated based on the deploy:
+
+- Deploy body hash - base on the serialization of deploy body, which is a string of payment serialization + deploy session serialization. Then use the blake2b256 hash over the generated serialized string to make the deploy body hash. The deploy body hash is an attribute of the deploy header.
+
+- Deploy hash: Use the blake2b256 hash over the header of the deploy.
+
+- Signature in deploy approvals is generated using the deploy hash using the key wrapper to sign over the deploy hash. You can use either Secp256k1 or Ed25519 to sign over the deploy hash, based on the account type of the deploy. If the deploy use account of type Secp256k1 then you have to sign with Secp256k1 key. If the deploy use account of type Ed25519 then you have to sign with Ed25519 key.
+
+- The whole deploy with full information is then serialized to a Json string and sent with a POST request to Casper main or test net, or localhost to call account_put_deploy RPC method.
+
+###To call the Put Deploy correctly, remember to do the following thing:
+
+- Know what your account type is, Ed25519 or Secp256k1.
+
+- Save your private key in 1 place that you can point to from code.
+
+- Choose correct path to private key to sign for the deploy hash in put deploy function.
+
+# Information for CLType, CLValue and Serialization
+
+- [CLType](./Docs/Help.md#cltype)
+
+- [CLValue](./Docs/Help.md#clvalue)
+
+- [Casper Domain Specific Objects](./Docs/Help.md#casper-domain-specific-objects)
+
+- [Serialization](./Docs/Help.md#serialization)
 
 # Documentation for classes and methods
 
@@ -280,7 +333,7 @@ Retrieves a StoredValue object.
 
 Here is some example of getting different kinds of StoredValue
 
-   #### 1. StoredValue as Contract :
+   #### 1. StoredValue as Contract
 
 call parameters :
 
@@ -298,7 +351,7 @@ do {
 }
 ```
 
-  #### 2. StoredValue as account  :
+  #### 2. StoredValue as account
 
 call parameters :
 
@@ -315,7 +368,7 @@ do {
     throw error
 }
 ```
-  #### 3. StoredValue as transfer  :
+  #### 3. StoredValue as transfer
 
 call parameters :
 
@@ -333,7 +386,7 @@ do {
 }
 ```
 
-  #### 4. StoredValue as DeployInfo  :
+  #### 4. StoredValue as DeployInfo
 
 call parameters :
 
@@ -351,7 +404,7 @@ do {
 }
 ```
 
-  #### 5. StoredValue as Bid  :
+  #### 5. StoredValue as Bid
 
 call parameters :
 
@@ -371,7 +424,7 @@ do {
 }
 ```
 
-  #### 6. StoredValue as Withdraw  :
+  #### 6. StoredValue as Withdraw
 
 call parameters :
 
@@ -410,7 +463,7 @@ call parameters :
 
 Call specification in detail for each type: 
 
-  #### 1. dictionary_identifier  parameter as  AccountNamedKey:
+  #### 1. dictionary_identifier  parameter as  AccountNamedKey
 
 ``` swift
  do {
@@ -423,7 +476,7 @@ Call specification in detail for each type:
  }
  ```
  
-   #### 2. dictionary_identifier  parameter as  ContractNamedKey:
+   #### 2. dictionary_identifier  parameter as  ContractNamedKey
 
 ``` swift
  do {
@@ -436,7 +489,7 @@ Call specification in detail for each type:
  }
  ```
  
-   #### 3. dictionary_identifier  parameter as  URef:
+   #### 3. dictionary_identifier  parameter as  URef
 
 ``` swift
  do {
@@ -449,7 +502,7 @@ Call specification in detail for each type:
  }
  ```
  
-   #### 4. dictionary_identifier  parameter as  Dictionary:
+   #### 4. dictionary_identifier  parameter as  Dictionary
 
 ``` swift
  do {
@@ -509,3 +562,59 @@ do {
 }
 ```
 
+## CLType primitives, Casper Domain Specific Objects, Serialization
+
+### CLType primitives: 
+
+Are built with Swift enumeration type, which consisted of all the value described in this page:
+
+https://docs.rs/casper-types/1.4.6/casper_types/enum.CLType.html
+
+### CLValue
+
+Is the value corresponding to the CLType. In Swift it is built with enumeration type also, with two attributes: CLType and the value of CLType
+
+### Casper Domain Specific Objects: 
+
+Are built with corresponding Swift classes, and in Entity folder
+
+### Serialization
+
+The serialization for CLType, CLValue and Deploy (which consists of Deploy Header, Deploy Session, Deploy Payment, Approvals) is implemented based on the document at this address: https://casper.network/docs/design/serialization-standard#serialization-standard-state-keys
+
+For CLType and CLValue, the serialization is done within class CLTypeSerializeHelper, which consists of two main methods:
+
+ - CLTypeSerialize is for CLType serialization
+ 
+ - CLValueSerialize is for CLValue serialization
+ 
+ For Deploy and Deploy related objects (Deploy Header, Deploy Session, Deploy Payment, Approvals) is done within file DeploySerialization.swift, in which there are classes for the serialization work
+  
+- DeploySerialization class is for Deploy Serialization
+
+- DeployHeaderSerialization class is for Deploy Header Serialization
+
+- ExecutableDeployItemSerializaton class is for Session and Payment Serialization
+
+- DeployApprovalSerialization class is for Approval Serialization
+
+For detail information please refer to this:
+
+- [CLType](./Docs/Help.md#cltype)
+
+- [CLValue](./Docs/Help.md#clvalue)
+
+- [Casper Domain Specific Objects](./Docs/Help.md#casper-domain-specific-objects)
+
+- [Serialization](./Docs/Help.md#serialization)
+
+## External libraries/package
+
+This package use the following external packages from github
+
+- https://github.com/leif-ibsen/SwiftECC.git for implementing Secp256k1 key Wrapper
+
+- https://github.com/tesseract-one/Blake2.swift.git for implementing blake2b256 hash function
+
+All the packages are under MIT licence.
+ 

@@ -17,7 +17,7 @@
     <a title="Enumerations  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (0% documented)</p>
+        <p><a href="index.html"> Docs</a> (50% documented)</p>
         <div class="header-right">
           <form role="search" action="search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -78,6 +78,12 @@
                 <a href="Classes/CLValue.html">CLValue</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/CLValueToJson.html">CLValueToJson</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CLValueWrapperToJsonString.html">CLValueWrapperToJsonString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/CasperSDK.html">CasperSDK</a>
               </li>
               <li class="nav-group-task">
@@ -105,9 +111,6 @@
                 <a href="Classes/DeployApprovalSerialization.html">DeployApprovalSerialization</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/DeployArgs.html">DeployArgs</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/DeployHash.html">DeployHash</a>
               </li>
               <li class="nav-group-task">
@@ -120,19 +123,19 @@
                 <a href="Classes/DeployInfo.html">DeployInfo</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/DeployModuleByte.html">DeployModuleByte</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/DeploySerialization.html">DeploySerialization</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/DeployStoredContractByHash.html">DeployStoredContractByHash</a>
+                <a href="Classes/DeployUtil.html">DeployUtil</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Digest.html">Digest</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/DisableVersion.html">DisableVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Ed25519Cryto.html">Ed25519Cryto</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/EntryPoint.html">EntryPoint</a>
@@ -160,9 +163,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/ExecutionResultHelper.html">ExecutionResultHelper</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes.html#/s:16CasperSDKInSwift22ExecutionSerializationC">ExecutionSerialization</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/GetAuctionInfo.html">GetAuctionInfo</a>
@@ -273,6 +273,9 @@
                 <a href="Classes/NamedArg.html">NamedArg</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/NamedArgJson.html">NamedArgJson</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/NamedCLTypeArg.html">NamedCLTypeArg</a>
               </li>
               <li class="nav-group-task">
@@ -301,6 +304,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/RuntimeArgs.html">RuntimeArgs</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Secp256k1Crypto.html">Secp256k1Crypto</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/StoredValueHelper.html">StoredValueHelper</a>
@@ -380,16 +386,36 @@
                 <a href="Enums/ExecutionResult.html">ExecutionResult</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/GenerateKeyError.html">GenerateKeyError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/OpKind.html">OpKind</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/PemFileHandlerError.html">PemFileHandlerError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/SeigniorageAllocation.html">SeigniorageAllocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SignActionError.html">SignActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/StoredValue.html">StoredValue</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Transform.html">Transform</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/String.html">String</a>
               </li>
             </ul>
           </li>
@@ -502,7 +528,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Enumeration type represents the RPC method call</p>
 
                         <a href="Enums/CasperMethodCall.html" class="slightly-smaller">See more</a>
                       </div>
@@ -511,6 +537,90 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CasperMethodCall</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift19PemFileHandlerErrorO"></a>
+                    <a name="//apple_ref/swift/Enum/PemFileHandlerError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift19PemFileHandlerErrorO">PemFileHandlerError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enumeration for parse pem file error</p>
+
+                        <a href="Enums/PemFileHandlerError.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PemFileHandlerError</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift15SignActionErrorO"></a>
+                    <a name="//apple_ref/swift/Enum/SignActionError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift15SignActionErrorO">SignActionError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Enums/SignActionError.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SignActionError</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift16GenerateKeyErrorO"></a>
+                    <a name="//apple_ref/swift/Enum/GenerateKeyError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift16GenerateKeyErrorO">GenerateKeyError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enumeration for generate key error</p>
+
+                        <a href="Enums/GenerateKeyError.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">GenerateKeyError</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
 
                         </div>
                       </div>
@@ -530,7 +640,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Enumeration for CLType</p>
 
                         <a href="Enums/CLType.html" class="slightly-smaller">See more</a>
                       </div>
@@ -558,7 +668,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Enumeration for CLValue. The CLValue is wrapped in an enumeration structure with name CLValueWrapper, in which each value hold the CLValue and its corresponding CLType for the CLValue.</p>
 
                         <a href="Enums/CLValueWrapper.html" class="slightly-smaller">See more</a>
                       </div>
@@ -586,7 +696,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Enumeration type represents the ErrorCode, which takes two type of value</p>
+
+<ul>
+<li>REAL_ERROR: if the error does occur</li>
+<li>NONE: if no error appear at all</li>
+</ul>
 
                         <a href="Enums/ErrorCode.html" class="slightly-smaller">See more</a>
                       </div>
@@ -642,7 +757,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Enumeration type represents the ExecutionResult</p>
 
                         <a href="Enums/ExecutionResult.html" class="slightly-smaller">See more</a>
                       </div>
@@ -670,7 +785,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Enumeration type represents the OpKind</p>
 
                         <a href="Enums/OpKind.html" class="slightly-smaller">See more</a>
                       </div>
@@ -698,7 +813,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Enumeration type represents the Transform</p>
 
                         <a href="Enums/Transform.html" class="slightly-smaller">See more</a>
                       </div>
@@ -726,7 +841,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Enumeration type represents the StoredValue</p>
 
                         <a href="Enums/StoredValue.html" class="slightly-smaller">See more</a>
                       </div>
@@ -782,7 +897,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Enumeration represents the BlockIdentifier, often used to send as parameter when call the RPC methods</p>
 
                         <a href="Enums/BlockIdentifier.html" class="slightly-smaller">See more</a>
                       </div>
@@ -810,7 +925,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Enumeration type represents the DictionaryIdentifier</p>
 
                         <a href="Enums/DictionaryIdentifier.html" class="slightly-smaller">See more</a>
                       </div>
@@ -830,7 +945,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-02-14)</p>
+          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-03-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>

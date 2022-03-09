@@ -1,8 +1,19 @@
 import Foundation
+/**
+ Class represents the JsonEraValidators
+ */
 
 public class JsonEraValidators {
+    ///Era id
     public var era_id:UInt64=0
+    ///List of Validator weight
     public var validator_weights:[ValidatorWeight] = [ValidatorWeight]()
+    /**
+        Get JsonEraValidators object from Json string
+        - Parameter : a Json String represents the JsonEraValidators object
+        - Returns: JsonEraValidators object
+        */
+
     public static func fromJsonToEraValidator(from:[String:Any])->JsonEraValidators {
         let ret : JsonEraValidators = JsonEraValidators();
         if let from1 = from as? [String:Any] {

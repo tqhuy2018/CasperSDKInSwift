@@ -17,7 +17,7 @@
     <a title="CasperSDK Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (0% documented)</p>
+        <p><a href="../index.html"> Docs</a> (50% documented)</p>
         <div class="header-right">
           <form role="search" action="../search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -78,6 +78,12 @@
                 <a href="../Classes/CLValue.html">CLValue</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CLValueToJson.html">CLValueToJson</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CLValueWrapperToJsonString.html">CLValueWrapperToJsonString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/CasperSDK.html">CasperSDK</a>
               </li>
               <li class="nav-group-task">
@@ -105,9 +111,6 @@
                 <a href="../Classes/DeployApprovalSerialization.html">DeployApprovalSerialization</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DeployArgs.html">DeployArgs</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/DeployHash.html">DeployHash</a>
               </li>
               <li class="nav-group-task">
@@ -120,19 +123,19 @@
                 <a href="../Classes/DeployInfo.html">DeployInfo</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DeployModuleByte.html">DeployModuleByte</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/DeploySerialization.html">DeploySerialization</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DeployStoredContractByHash.html">DeployStoredContractByHash</a>
+                <a href="../Classes/DeployUtil.html">DeployUtil</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Digest.html">Digest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DisableVersion.html">DisableVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Ed25519Cryto.html">Ed25519Cryto</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/EntryPoint.html">EntryPoint</a>
@@ -160,9 +163,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ExecutionResultHelper.html">ExecutionResultHelper</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes.html#/s:16CasperSDKInSwift22ExecutionSerializationC">ExecutionSerialization</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/GetAuctionInfo.html">GetAuctionInfo</a>
@@ -273,6 +273,9 @@
                 <a href="../Classes/NamedArg.html">NamedArg</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/NamedArgJson.html">NamedArgJson</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/NamedCLTypeArg.html">NamedCLTypeArg</a>
               </li>
               <li class="nav-group-task">
@@ -301,6 +304,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RuntimeArgs.html">RuntimeArgs</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Secp256k1Crypto.html">Secp256k1Crypto</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/StoredValueHelper.html">StoredValueHelper</a>
@@ -380,16 +386,36 @@
                 <a href="../Enums/ExecutionResult.html">ExecutionResult</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/GenerateKeyError.html">GenerateKeyError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/OpKind.html">OpKind</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/PemFileHandlerError.html">PemFileHandlerError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/SeigniorageAllocation.html">SeigniorageAllocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SignActionError.html">SignActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/StoredValue.html">StoredValue</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/Transform.html">Transform</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
               </li>
             </ul>
           </li>
@@ -406,7 +432,7 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Class represents the CasperSDK. This class is the source for calling PRC methods</p>
 
           </section>
           <section class="section task-group-section">
@@ -425,7 +451,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Set the URL for RPC method call , which can be test net or main net</p>
 
                       </div>
                       <div class="declaration">
@@ -435,6 +461,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setMethodUrl</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none</p>
                       </div>
                     </section>
                   </div>
@@ -452,7 +482,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Init function with predefined  URL for RPC method call , which can be test net or main net</p>
 
                       </div>
                       <div class="declaration">
@@ -462,6 +492,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none</p>
                       </div>
                     </section>
                   </div>
@@ -479,7 +513,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get State Root Hash RPC call</p>
 
                       </div>
                       <div class="declaration">
@@ -489,6 +523,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getStateRootHash</span><span class="p">(</span><span class="nv">getStateRootHashParam</span><span class="p">:</span> <span class="kt"><a href="../Classes/GetStateRootHashParam.html">GetStateRootHashParam</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none. The actually process of getting State Root Hash is done in HttpHandler class</p>
                       </div>
                     </section>
                   </div>
@@ -506,7 +544,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>info_get_peers RPC call</p>
 
                       </div>
                       <div class="declaration">
@@ -516,6 +554,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getPeers</span><span class="p">()</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none. The actually process of getting peer list is done in HttpHandler class</p>
                       </div>
                     </section>
                   </div>
@@ -533,7 +575,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>info_get_deploy RPC call</p>
 
                       </div>
                       <div class="declaration">
@@ -543,6 +585,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getDeploy</span><span class="p">(</span><span class="nv">getDeployParam</span><span class="p">:</span> <span class="kt"><a href="../Classes/GetDeployParams.html">GetDeployParams</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none. The actually process of getting GetDeployResult is done in HttpHandler class</p>
                       </div>
                     </section>
                   </div>
@@ -560,7 +606,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>info_get_status RPC call</p>
 
                       </div>
                       <div class="declaration">
@@ -570,6 +616,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getStatus</span><span class="p">()</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none. The actually process of getting GetStatusResult is done in HttpHandler class</p>
                       </div>
                     </section>
                   </div>
@@ -587,7 +637,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>state_get_dictionary_item RPC call</p>
 
                       </div>
                       <div class="declaration">
@@ -597,6 +647,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getDictionaryItem</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Classes/GetDictionaryItemParams.html">GetDictionaryItemParams</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none. The actually process of getting GetDictionaryItemResult is done in HttpHandler class</p>
                       </div>
                     </section>
                   </div>
@@ -614,7 +668,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>chain_get_era_info_by_switch_block RPC call</p>
 
                       </div>
                       <div class="declaration">
@@ -624,6 +678,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getEraBySwitchBlock</span><span class="p">(</span><span class="nv">input</span><span class="p">:</span> <span class="kt"><a href="../Enums/BlockIdentifier.html">BlockIdentifier</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none. The actually process of getting GetEraInfoResult is done in HttpHandler class</p>
                       </div>
                     </section>
                   </div>
@@ -641,7 +699,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>state_get_item RPC call</p>
 
                       </div>
                       <div class="declaration">
@@ -651,6 +709,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getItem</span><span class="p">(</span><span class="nv">input</span><span class="p">:</span> <span class="kt"><a href="../Classes/GetItemParams.html">GetItemParams</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none. The actually process of getting GetItemResult is done in HttpHandler class</p>
                       </div>
                     </section>
                   </div>
@@ -668,7 +730,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>chain_get_block_transfers RPC call</p>
 
                       </div>
                       <div class="declaration">
@@ -678,6 +740,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getBlockTransfers</span><span class="p">(</span><span class="nv">input</span><span class="p">:</span> <span class="kt"><a href="../Enums/BlockIdentifier.html">BlockIdentifier</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none. The actually process of getting GetBlockTransfersResult is done in HttpHandler class</p>
                       </div>
                     </section>
                   </div>
@@ -695,7 +761,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>chain_get_block RPC call</p>
 
                       </div>
                       <div class="declaration">
@@ -705,6 +771,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getBlock</span><span class="p">(</span><span class="nv">input</span><span class="p">:</span> <span class="kt"><a href="../Enums/BlockIdentifier.html">BlockIdentifier</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none. The actually process of getting GetBlockResult is done in HttpHandler class</p>
                       </div>
                     </section>
                   </div>
@@ -722,7 +792,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>state_get_balance RPC call</p>
 
                       </div>
                       <div class="declaration">
@@ -732,6 +802,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getStateBalance</span><span class="p">(</span><span class="nv">input</span><span class="p">:</span> <span class="kt"><a href="../Classes/GetBalanceParams.html">GetBalanceParams</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none. The actually process of getting GetBalanceResult is done in HttpHandler class</p>
                       </div>
                     </section>
                   </div>
@@ -749,7 +823,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>state_get_auction_info RPC call</p>
 
                       </div>
                       <div class="declaration">
@@ -759,6 +833,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getAuctionInfo</span><span class="p">(</span><span class="nv">input</span><span class="p">:</span> <span class="kt"><a href="../Enums/BlockIdentifier.html">BlockIdentifier</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none. The actually process of getting GetAuctionInfoResult is done in HttpHandler class</p>
                       </div>
                     </section>
                   </div>
@@ -776,7 +854,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>account_put_deploy RPC call</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -787,6 +870,10 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>none. The actually process of getting GetDictionaryItemResult is done in HttpHandler class</p>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -795,7 +882,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-02-14)</p>
+          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-03-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>

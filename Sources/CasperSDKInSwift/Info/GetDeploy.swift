@@ -1,5 +1,16 @@
 import Foundation
+/**
+ Class supports the getting of GetDeployResult from Json String
+ */
+
 class GetDeploy {
+    /**
+       Get GetDeployResult object from Json string
+       - Parameter : a Json String represents the GetDeployResult object
+       - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
+       - Returns: GetDeployResult object
+       */
+
     public static func getDeploy(from:[String:Any]) throws -> GetDeployResult{
         let getDeploy:GetDeployResult = GetDeployResult();
         do {
@@ -21,7 +32,6 @@ class GetDeploy {
                 }
                 if let deployJson = resultJson["deploy"] as? [String:Any] {
                     if let approvals = deployJson["approvals"] as? [AnyObject] {
-                        let totalApproval = approvals.count
                         for approval in approvals {
                             let oneApproval:DeployApprovalItem = DeployApprovalItem();
                             if let signature = approval["signature"] as? String {

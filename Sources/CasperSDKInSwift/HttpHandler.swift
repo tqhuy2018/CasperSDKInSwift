@@ -1,9 +1,72 @@
 import Foundation
 import XCTest
+/**
+ HttpHandler Class for handling sending request for RPC methods and retrieving data back
+ */
+
 class HttpHandler:XCTestCase {
+    ///Method URL for calling RPC method, can be local, test net or main net
     static var methodURL:String = "https://node-clarity-testnet.make.services/rpc";
+    ///RPC method, which can be chain_get_state_root_hash or info_get_peers or info_get_deploy ....
     public var methodCall:CasperMethodCall = .chainGetStateRootHash;
     
+    public func putDeploy(method:CasperMethodCall,params:Data,httpMethod:String="POST",deployHash:String="") throws {
+        guard let url = URL(string: HttpHandler.methodURL) else {
+            throw CasperMethodError.invalidURL
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.httpBody = params
+        let expectation = self.expectation(description: "Getting json data from casper")
+        let task = URLSession.shared.dataTask(with: request)  { data, response, error in
+            guard let data = data, error == nil else {
+                NSLog(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options:[])
+            if let responseJSON = responseJSON as? [String: Any] {
+                if let errorDeploy = responseJSON["error"] as? [String:Any] {
+                    var code:Int!
+                    var message:String!
+                    if let code1 = errorDeploy["code"] as? Int {
+                        code = code1
+                    }
+                    if let message1 = errorDeploy["message"] as? String {
+                        message = message1
+                    }
+                    NSLog("Error get Deploy Result, with Error message:")
+                    NSLog(message)
+                   // throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "chain_get_block_transfers")
+                } else {
+                    do {
+                        let deploy_hash = try DeployUtil.getDeployResult(from: responseJSON)
+                        XCTAssert(deployHash == deploy_hash)
+                    } catch {
+                        NSLog("Error get Deploy Result")
+                    }
+                }
+            }
+            expectation.fulfill()
+        }
+        task.resume()
+        self.waitForExpectations(timeout: 500, handler: nil)
+    }
+    /**
+     This function handle the request with specific RPC call and given parameter for each method
+        - Parameter :
+                - method: The RPC method to be called, such as chain_get_state_root_hash or info_get_peers or info_get_deploy ... as declared in enumeration type CasperMethodCall
+                - params: The parameter for the RPC method call. The parameter data is changed through a function for each RPC method call, for example with chain_get_block_transfers RPC method, the raw parameter is the BlockIdentifier. The BlockIdentifier is changed through a function like this:
+                let blockIdentifier : BlockIdentifier = .Height(1000)
+                let jsonData = JsonConversion.fromBlockIdentifierToJsonData(input:blockIdentifier,method: .chainGetBlockTransfer)
+                Then the jsonData can be passed to the HttpHandler class to call for chain_get_block_transfers RPC method like this:
+                try httpHandler.handleRequest(method: methodCall, params: jsonData)
+                -httpMethod: can be PUT, POST, GET, the default value is POST
+        - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
+        - Returns: GetBlockResult object
+        */
+
     public func handleRequest(method:CasperMethodCall,params:Data,httpMethod:String="POST") throws {
         guard let url = URL(string: HttpHandler.methodURL) else {
             throw CasperMethodError.invalidURL
@@ -51,8 +114,8 @@ class HttpHandler:XCTestCase {
                         XCTAssert(getDeployResult.deploy.hash.count==64)
                         XCTAssert(getDeployResult.deploy.header.body_hash.count == 64)
                         NSLog("Total deploy approvals:\(getDeployResult.deploy.approvals.count)")
-                        NSLog("Payment:\(getDeployResult.deploy.payment)")
-                        NSLog("Session:\(getDeployResult.deploy.session)")
+                        NSLog("Payment:\(getDeployResult.deploy.payment!)")
+                        NSLog("Session:\(getDeployResult.deploy.session!)")
                         NSLog("Total JsonExecutionResult:\(getDeployResult.execution_results.count)")
                         if(getDeployResult.execution_results.count>0) {
                             NSLog("ExecutionResult block_hash:\(getDeployResult.execution_results.first!.block_hash)")
@@ -105,17 +168,17 @@ class HttpHandler:XCTestCase {
                         let getBlockTransferResult:GetBlockTransfersResult = try GetBlockTransfers.getResult(from: responseJSON)
                         NSLog("In chain_get_block_transfers, block_hash:\(getBlockTransferResult.block_hash)")
                         XCTAssert(getBlockTransferResult.block_hash.count == 64)
-                        if let transfer = getBlockTransferResult.transfers {
+                        if getBlockTransferResult.transfers != nil {
                             NSLog("Total Transfer:\(getBlockTransferResult.transfers!.count)")
                             if getBlockTransferResult.transfers!.count > 0 {
                                 let firstTransfer = getBlockTransferResult.transfers!.first!
-                                NSLog("First transfer deploy_hash:\(firstTransfer.deploy_hash)")
-                                NSLog("First transfer from:\(firstTransfer.from)")
-                                NSLog("First transfer to:\(firstTransfer.to)")
-                                NSLog("First transfer source:\(firstTransfer.source.value)")
-                                NSLog("First transfer target:\(firstTransfer.target.value)")
+                                NSLog("First transfer deploy_hash:\(firstTransfer.deploy_hash!)")
+                                NSLog("First transfer from:\(firstTransfer.from!)")
+                                NSLog("First transfer to:\(firstTransfer.to!)")
+                                NSLog("First transfer source:\(firstTransfer.source.value!)")
+                                NSLog("First transfer target:\(firstTransfer.target.value!)")
                                 NSLog("First transfer gas:\(firstTransfer.gas.valueInStr)")
-                                NSLog("First transfer id:\(firstTransfer.id)")
+                                NSLog("First transfer id:\(firstTransfer.id!)")
                             }
                         }
                     } catch {
@@ -137,11 +200,11 @@ class HttpHandler:XCTestCase {
                         NSLog("Block body proposer:\(getBlockResult.block.body.proposer.value)")
                         if getBlockResult.block.body.deployHash.count > 0 {
                             XCTAssert(getBlockResult.block.body.deployHash.first!.value!.count == 64)
-                            NSLog("Block body first deploy hash:\(getBlockResult.block.body.deployHash.first!.value)")
+                            NSLog("Block body first deploy hash:\(getBlockResult.block.body.deployHash.first!.value!)")
                         }
                         if getBlockResult.block.body.transferHash.count > 0 {
                             XCTAssert(getBlockResult.block.body.transferHash.first!.value!.count == 64)
-                            NSLog("Block body first transfer hash:\(getBlockResult.block.body.transferHash.first!.value)")
+                            NSLog("Block body first transfer hash:\(getBlockResult.block.body.transferHash.first!.value!)")
                         }
                         //check for block proofs
                         NSLog("Block total proof:\(getBlockResult.block.proofs.count)")
@@ -186,7 +249,7 @@ class HttpHandler:XCTestCase {
                         self.XCTAssertForStoredValue(methodCall: "state_get_dictionary_item", value: getDictionaryItemResult.stored_value)
                         NSLog("GetDictionaryItem merkle_proof length:\(getDictionaryItemResult.merkle_proof.count)")
                         XCTAssert(getDictionaryItemResult.merkle_proof.count>1000)
-                        NSLog("GetDictionaryItemResult dictionary_key:\(getDictionaryItemResult.dictionary_key)")
+                        NSLog("GetDictionaryItemResult dictionary_key:\(getDictionaryItemResult.dictionary_key!)")
                     }
                     catch {
                         NSLog("Error:\(error)")
@@ -210,14 +273,14 @@ class HttpHandler:XCTestCase {
                             let firstBid:JsonBids = getAuctionInfo.auction_state.bids.first!
                             NSLog("AuctionState first bid public_key:\(firstBid.public_key.value)")
                             NSLog("AuctionState first bid staked_amount: \(firstBid.bid.staked_amount.valueInStr)")
-                            NSLog("AuctionState first bid bonding_purse: \(firstBid.bid.bonding_purse.value)")
+                            NSLog("AuctionState first bid bonding_purse: \(firstBid.bid.bonding_purse.value!)")
                             NSLog("AuctionState first bid delegation_rate: \(firstBid.bid.delegation_rate)")
                             NSLog("AuctionState first bid inactive: \(firstBid.bid.inactive)")
                             NSLog("AuctionState first bid total delegator: \(firstBid.bid.delegators.count)")
                             if (firstBid.bid.delegators.count > 0) {
                                 NSLog("Information for first bid first delegator")
                                 let firstDelegator : JsonDelegator = firstBid.bid.delegators.first!
-                                NSLog("First delegator bonding_purse:\(firstDelegator.bonding_purse.value)")
+                                NSLog("First delegator bonding_purse:\(firstDelegator.bonding_purse.value!)")
                                 NSLog("First delegator delegatee:\(firstDelegator.delegatee.value)")
                                 NSLog("First delegator public_key:\(firstDelegator.public_key.value)")
                                 NSLog("First delegator staked_amount:\(firstDelegator.staked_amount.valueInStr)")
@@ -234,6 +297,14 @@ class HttpHandler:XCTestCase {
         task.resume()
         self.waitForExpectations(timeout: 500, handler: nil)
     }
+    /**
+        This function facilitate the test of StoredValue only
+        - Parameter :
+            - methodCall: The RPC method call, such as chain_get_state_root_hash or info_get_peers or info_get_deploy ..., just for Log the information which method is called.
+            - value: of type StoredValue, used for XCTAssert the correctness of the result
+        - Returns: none
+        */
+
     public func XCTAssertForStoredValue(methodCall:String,value:StoredValue) {
         switch value {
         case .CLValue(let cLValue):
@@ -244,16 +315,16 @@ class HttpHandler:XCTestCase {
             break
         case .Account(let account):
             NSLog("In \(methodCall), stored_value is Account")
-            NSLog("Account hash:\(account.account_hash.value)")
-            NSLog("Action threshold delployment:\(account.action_thresholds.deployment)")
-            NSLog("Action threshold key_management:\(account.action_thresholds.key_management)")
+            NSLog("Account hash:\(account.account_hash.value!)")
+            NSLog("Action threshold delployment:\(account.action_thresholds.deployment!)")
+            NSLog("Action threshold key_management:\(account.action_thresholds.key_management!)")
             NSLog("Total associate key:\(account.associated_keys.count)")
             if account.associated_keys.count > 0 {
                 let firstAK:AssociatedKey = account.associated_keys.first!
-                NSLog("First associate_key account_hash:\(firstAK.account_hash.value)")
-                NSLog("First associate_key weight:\(firstAK.weight)")
+                NSLog("First associate_key account_hash:\(firstAK.account_hash.value!)")
+                NSLog("First associate_key weight:\(firstAK.weight!)")
             }
-            NSLog("Main purse:\(account.main_purse.value)")
+            NSLog("Main purse:\(account.main_purse.value!)")
             NSLog("Total named_key:\(account.named_keys.count)")
             if account.named_keys.count > 0 {
                 let firstKey = account.named_keys.first!
@@ -266,8 +337,8 @@ class HttpHandler:XCTestCase {
             break
         case .Contract(let contract):
             NSLog("In \(methodCall), stored_value is Contract")
-            NSLog("Contract contract_package_hash:\(contract.contract_package_hash)")
-            NSLog("Contract contract_wasm_hash:\(contract.contract_wasm_hash)")
+            NSLog("Contract contract_package_hash:\(contract.contract_package_hash!)")
+            NSLog("Contract contract_wasm_hash:\(contract.contract_wasm_hash!)")
             NSLog("Contract total named_key:\(contract.named_keys.count)")
             if contract.named_keys.count > 0 {
                 let firstNK:NamedKey = contract.named_keys.first!
@@ -277,15 +348,15 @@ class HttpHandler:XCTestCase {
             NSLog("Contract total entry_points:\(contract.entry_points.count)")
             if contract.entry_points.count > 0 {
                 let firstEP:EntryPoint = contract.entry_points.first!
-                NSLog("First entry_point name:\(firstEP.name)")
-                NSLog("First entry_point entry_point_type:\(firstEP.entry_point_type)")
-                NSLog("First entry_point ret:\(firstEP.ret)")
+                NSLog("First entry_point name:\(firstEP.name!)")
+                NSLog("First entry_point entry_point_type:\(firstEP.entry_point_type!)")
+                NSLog("First entry_point ret:\(firstEP.ret!)")
                 NSLog("First entry_point total args:\(firstEP.args.count)")
             }
             break
         case .ContractPackage(let contractPackage):
             NSLog("In \(methodCall), stored_value is ContractPackage")
-            NSLog("ContractPackage access_key:\(contractPackage.access_key.value)")
+            NSLog("ContractPackage access_key:\(contractPackage.access_key.value!)")
             NSLog("Total versions:\(contractPackage.versions.count)")
             NSLog("Total disabled_versions:\(contractPackage.disabled_versions.count)")
             NSLog("Total groups:\(contractPackage.groups.count)")
@@ -293,17 +364,17 @@ class HttpHandler:XCTestCase {
         case .Transfer(let transfer):
             NSLog("In \(methodCall), stored_value is Transfer")
             NSLog("Transfer amount:\(transfer.amount.valueInStr)")
-            NSLog("Transfer deploy_hash:\(transfer.deploy_hash)")
-            NSLog("Transfer from:\(transfer.from)")
-            NSLog("Transfer source:\(transfer.source.value)")
-            NSLog("Transfer target:\(transfer.target)")
+            NSLog("Transfer deploy_hash:\(transfer.deploy_hash!)")
+            NSLog("Transfer from:\(transfer.from!)")
+            NSLog("Transfer source:\(transfer.source.value!)")
+            NSLog("Transfer target:\(transfer.target!)")
             break
         case .DeployInfo(let deployInfo):
             NSLog("In \(methodCall), stored_value is DeployInfo")
             NSLog("Deploy deploy_hash:\(deployInfo.deploy_hash)")
             NSLog("Deploy total transfer:\(deployInfo.transfers.count)")
             NSLog("Deploy from:\(deployInfo.from)")
-            NSLog("Deploy source:\(deployInfo.source.value)")
+            NSLog("Deploy source:\(deployInfo.source.value!)")
             NSLog("Deploy gas:\(deployInfo.gas.valueInStr)")
             break
         case .EraInfo(let eraInfo):
@@ -314,7 +385,7 @@ class HttpHandler:XCTestCase {
                 switch firstSA {
                 case .Validator(let validator):
                     //XCTAssert(validator.validator_public_key.value.count == 66)
-                    NSLog("Validator public key:\(validator.validator_public_key)")
+                    NSLog("Validator public key:\(validator.validator_public_key!)")
                     NSLog("Validator amount:\(validator.amount.valueInStr)")
                 case .Delegator(let delegator):
                     XCTAssert(delegator.validator_public_key.value.count == 66)
@@ -327,8 +398,8 @@ class HttpHandler:XCTestCase {
         case .Bid(let bid):
             NSLog("In \(methodCall), stored_value is Bid")
             NSLog("validator_public_key:\(bid.validator_public_key.value)")
-            NSLog("bonding_purse:\(bid.bonding_purse.value)")
-            NSLog("staked_amount:\(bid.staked_amount)")
+            NSLog("bonding_purse:\(bid.bonding_purse.value!)")
+            NSLog("staked_amount:\(bid.staked_amount!)")
             NSLog("Total delegator:\(bid.delegators.count)")
             break
         case .Withdraw(let array):
@@ -336,7 +407,7 @@ class HttpHandler:XCTestCase {
             NSLog("Total UnbondingPurse:\(array.count)")
             if array.count > 0 {
                 let firstUP : UnbondingPurse = array.first!
-                NSLog("Withdraw first  UnbondingPurse, bonding_purse:\(firstUP.bonding_purse.value)")
+                NSLog("Withdraw first  UnbondingPurse, bonding_purse:\(firstUP.bonding_purse.value!)")
                 NSLog("Withdraw first  UnbondingPurse, amount:\(firstUP.amount.valueInStr)")
                 NSLog("Withdraw first  UnbondingPurse, era_of_creation:\(firstUP.era_of_creation)")
                 NSLog("Withdraw first  UnbondingPurse, unbonder_public_key:\(firstUP.unbonder_public_key.value)")

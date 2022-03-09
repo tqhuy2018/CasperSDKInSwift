@@ -17,7 +17,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (0% documented)</p>
+        <p><a href="index.html"> Docs</a> (50% documented)</p>
         <div class="header-right">
           <form role="search" action="search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -78,6 +78,12 @@
                 <a href="Classes/CLValue.html">CLValue</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/CLValueToJson.html">CLValueToJson</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CLValueWrapperToJsonString.html">CLValueWrapperToJsonString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/CasperSDK.html">CasperSDK</a>
               </li>
               <li class="nav-group-task">
@@ -105,9 +111,6 @@
                 <a href="Classes/DeployApprovalSerialization.html">DeployApprovalSerialization</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/DeployArgs.html">DeployArgs</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/DeployHash.html">DeployHash</a>
               </li>
               <li class="nav-group-task">
@@ -120,19 +123,19 @@
                 <a href="Classes/DeployInfo.html">DeployInfo</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/DeployModuleByte.html">DeployModuleByte</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/DeploySerialization.html">DeploySerialization</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/DeployStoredContractByHash.html">DeployStoredContractByHash</a>
+                <a href="Classes/DeployUtil.html">DeployUtil</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Digest.html">Digest</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/DisableVersion.html">DisableVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Ed25519Cryto.html">Ed25519Cryto</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/EntryPoint.html">EntryPoint</a>
@@ -160,9 +163,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/ExecutionResultHelper.html">ExecutionResultHelper</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes.html#/s:16CasperSDKInSwift22ExecutionSerializationC">ExecutionSerialization</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/GetAuctionInfo.html">GetAuctionInfo</a>
@@ -273,6 +273,9 @@
                 <a href="Classes/NamedArg.html">NamedArg</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/NamedArgJson.html">NamedArgJson</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/NamedCLTypeArg.html">NamedCLTypeArg</a>
               </li>
               <li class="nav-group-task">
@@ -301,6 +304,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/RuntimeArgs.html">RuntimeArgs</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Secp256k1Crypto.html">Secp256k1Crypto</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/StoredValueHelper.html">StoredValueHelper</a>
@@ -380,16 +386,36 @@
                 <a href="Enums/ExecutionResult.html">ExecutionResult</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/GenerateKeyError.html">GenerateKeyError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/OpKind.html">OpKind</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/PemFileHandlerError.html">PemFileHandlerError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/SeigniorageAllocation.html">SeigniorageAllocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SignActionError.html">SignActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/StoredValue.html">StoredValue</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Transform.html">Transform</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/String.html">String</a>
               </li>
             </ul>
           </li>
@@ -418,7 +444,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the CasperSDK. This class is the source for calling PRC methods</p>
 
                         <a href="Classes/CasperSDK.html" class="slightly-smaller">See more</a>
                       </div>
@@ -446,7 +472,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetBlockResult</p>
 
                         <a href="Classes/GetBlockResult.html" class="slightly-smaller">See more</a>
                       </div>
@@ -474,7 +500,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetBlockTransfers</p>
 
                         <a href="Classes/GetBlockTransfers.html" class="slightly-smaller">See more</a>
                       </div>
@@ -502,7 +528,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetBlockTransfersParams</p>
 
                         <a href="Classes/GetBlockTransfersParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -530,7 +556,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetBlockTransfersResult</p>
 
                         <a href="Classes/GetBlockTransfersResult.html" class="slightly-smaller">See more</a>
                       </div>
@@ -558,7 +584,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetEraInfoResult</p>
 
                         <a href="Classes/GetEraInfoResult.html" class="slightly-smaller">See more</a>
                       </div>
@@ -586,7 +612,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetStateRootHashParam</p>
 
                         <a href="Classes/GetStateRootHashParam.html" class="slightly-smaller">See more</a>
                       </div>
@@ -604,9 +630,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16CasperSDKInSwift19DeploySerializationC"></a>
-                    <a name="//apple_ref/swift/Class/DeploySerialization" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift19DeploySerializationC">DeploySerialization</a>
+                    <a name="/s:16CasperSDKInSwift12Ed25519CrytoC"></a>
+                    <a name="//apple_ref/swift/Class/Ed25519Cryto" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift12Ed25519CrytoC">Ed25519Cryto</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -614,15 +640,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class to handle the following actions on Ed25519 encryption:  key generation, read key from PEM file,  write key to PEM file, sign message, verify message</p>
 
-                        <a href="Classes/DeploySerialization.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/Ed25519Cryto.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeploySerialization</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Ed25519Cryto</span></code></pre>
 
                         </div>
                       </div>
@@ -632,9 +658,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16CasperSDKInSwift25DeployHeaderSerializationC"></a>
-                    <a name="//apple_ref/swift/Class/DeployHeaderSerialization" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift25DeployHeaderSerializationC">DeployHeaderSerialization</a>
+                    <a name="/s:16CasperSDKInSwift15Secp256k1CryptoC"></a>
+                    <a name="//apple_ref/swift/Class/Secp256k1Crypto" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift15Secp256k1CryptoC">Secp256k1Crypto</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -642,98 +668,23 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Secp256k1 wrapper class. This class allow user to do the following task in secp256k1 encryption:</p>
 
-                        <a href="Classes/DeployHeaderSerialization.html" class="slightly-smaller">See more</a>
+<ul>
+<li>Generate private key, public key</li>
+<li>Load private key, public key from Pem file</li>
+<li>Write private key, public key to Pem file</li>
+<li>Sign message</li>
+<li>Verify message</li>
+</ul>
+
+                        <a href="Classes/Secp256k1Crypto.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployHeaderSerialization</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:16CasperSDKInSwift32ExecutableDeployItemSerializatonC"></a>
-                    <a name="//apple_ref/swift/Class/ExecutableDeployItemSerializaton" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift32ExecutableDeployItemSerializatonC">ExecutableDeployItemSerializaton</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Classes/ExecutableDeployItemSerializaton.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ExecutableDeployItemSerializaton</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:16CasperSDKInSwift27DeployApprovalSerializationC"></a>
-                    <a name="//apple_ref/swift/Class/DeployApprovalSerialization" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift27DeployApprovalSerializationC">DeployApprovalSerialization</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Classes/DeployApprovalSerialization.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployApprovalSerialization</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:16CasperSDKInSwift22ExecutionSerializationC"></a>
-                    <a name="//apple_ref/swift/Class/ExecutionSerialization" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift22ExecutionSerializationC">ExecutionSerialization</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ExecutionSerialization</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Secp256k1Crypto</span></code></pre>
 
                         </div>
                       </div>
@@ -753,7 +704,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class for Account object</p>
 
                         <a href="Classes/Account.html" class="slightly-smaller">See more</a>
                       </div>
@@ -781,7 +732,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class for ActionThresholds object</p>
 
                         <a href="Classes/ActionThresholds.html" class="slightly-smaller">See more</a>
                       </div>
@@ -809,7 +760,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class for AssociatedKey object</p>
 
                         <a href="Classes/AssociatedKey.html" class="slightly-smaller">See more</a>
                       </div>
@@ -837,7 +788,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class for AuctionState object</p>
 
                         <a href="Classes/AuctionState.html" class="slightly-smaller">See more</a>
                       </div>
@@ -865,7 +816,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class for Bid object</p>
 
                         <a href="Classes/Bid.html" class="slightly-smaller">See more</a>
                       </div>
@@ -893,7 +844,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the JsonBlock</p>
 
                         <a href="Classes/JsonBlock.html" class="slightly-smaller">See more</a>
                       </div>
@@ -921,7 +872,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the JsonBlockBody</p>
 
                         <a href="Classes/JsonBlockBody.html" class="slightly-smaller">See more</a>
                       </div>
@@ -949,7 +900,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the JsonBlockHeader</p>
 
                         <a href="Classes/JsonBlockHeader.html" class="slightly-smaller">See more</a>
                       </div>
@@ -977,7 +928,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the JsonEraEnd</p>
 
                         <a href="Classes/JsonEraEnd.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1005,7 +956,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the JsonEraReport</p>
 
                         <a href="Classes/JsonEraReport.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1033,7 +984,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the JsonProof</p>
 
                         <a href="Classes/JsonProof.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1061,7 +1012,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the Reward</p>
 
                         <a href="Classes/Reward.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1089,7 +1040,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the ValidatorWeight</p>
 
                         <a href="Classes/ValidatorWeight.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1117,7 +1068,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class  for handling the  conversion from Json String to  CLType</p>
 
                         <a href="Classes/CLTypeHelper.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1126,34 +1077,6 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CLTypeHelper</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:16CasperSDKInSwift21CLTypeSerializeHelperC"></a>
-                    <a name="//apple_ref/swift/Class/CLTypeSerializeHelper" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift21CLTypeSerializeHelperC">CLTypeSerializeHelper</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Classes/CLTypeSerializeHelper.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CLTypeSerializeHelper</span></code></pre>
 
                         </div>
                       </div>
@@ -1173,7 +1096,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class for CLValue with 3 attributes:</p>
+
+<ul>
+<li>bytes - the serialization of the CLValue</li>
+<li>cl_type: of type CLType</li>
+<li>parsed: of type CLValueWrapper, hold the CLValue and its corresponding CLType</li>
+</ul>
 
                         <a href="Classes/CLValue.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1182,6 +1111,62 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CLValue</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift13CLValueToJsonC"></a>
+                    <a name="//apple_ref/swift/Class/CLValueToJson" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift13CLValueToJsonC">CLValueToJson</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class for turning CLValue to Json String</p>
+
+                        <a href="Classes/CLValueToJson.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CLValueToJson</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift26CLValueWrapperToJsonStringC"></a>
+                    <a name="//apple_ref/swift/Class/CLValueWrapperToJsonString" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift26CLValueWrapperToJsonStringC">CLValueWrapperToJsonString</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/CLValueWrapperToJsonString.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CLValueWrapperToJsonString</span></code></pre>
 
                         </div>
                       </div>
@@ -1201,7 +1186,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the Contract</p>
 
                         <a href="Classes/Contract.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1229,7 +1214,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the ContractPackage</p>
 
                         <a href="Classes/ContractPackage.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1257,7 +1242,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the ContractVersion</p>
 
                         <a href="Classes/ContractVersion.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1285,7 +1270,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the Delegator</p>
 
                         <a href="Classes/Delegator.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1313,7 +1298,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the Bytes</p>
 
                         <a href="Classes/Bytes.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1341,7 +1326,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class for Deploy object</p>
 
                         <a href="Classes/Deploy.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1350,6 +1335,62 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Deploy</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift10DeployUtilC"></a>
+                    <a name="//apple_ref/swift/Class/DeployUtil" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift10DeployUtilC">DeployUtil</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/DeployUtil.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployUtil</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift12NamedArgJsonC"></a>
+                    <a name="//apple_ref/swift/Class/NamedArgJson" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift12NamedArgJsonC">NamedArgJson</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/NamedArgJson.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">NamedArgJson</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
 
                         </div>
                       </div>
@@ -1369,7 +1410,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class for DeployApprovalItem object</p>
 
                         <a href="Classes/DeployApprovalItem.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1397,7 +1438,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class for Deploy Header object</p>
 
                         <a href="Classes/DeployHeader.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1405,7 +1446,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployHeader</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployHeader</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
 
                         </div>
                       </div>
@@ -1425,7 +1466,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the DeployInfo</p>
 
                         <a href="Classes/DeployInfo.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1453,7 +1494,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the Digest</p>
 
                         <a href="Classes/Digest.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1481,7 +1522,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the DisableVersion</p>
 
                         <a href="Classes/DisableVersion.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1509,7 +1550,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the EntryPoint</p>
 
                         <a href="Classes/EntryPoint.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1537,7 +1578,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the EraSummary</p>
 
                         <a href="Classes/EraSummary.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1565,7 +1606,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the ErrorHandler. This class is used when call RPC methods to handle error.</p>
 
                         <a href="Classes/ErrorHandler.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1593,7 +1634,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class supports the getting of ExecutableDeployItem from Json String</p>
 
                         <a href="Classes/ExecutableDeployItemHelper.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1621,7 +1662,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the ExecutionEffect</p>
 
                         <a href="Classes/ExecutionEffect.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1649,7 +1690,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class provides the supported method for  getting the ExecutionResult</p>
 
                         <a href="Classes/ExecutionResultHelper.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1677,7 +1718,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the JsonExecutionResult</p>
 
                         <a href="Classes/JsonExecutionResult.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1705,7 +1746,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the Operation</p>
 
                         <a href="Classes/Operation.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1733,7 +1774,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the TransferAddr</p>
 
                         <a href="Classes/TransferAddr.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1761,7 +1802,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class provides the supported method for  getting the Transform value</p>
 
                         <a href="Classes/TransformHelper.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1789,7 +1830,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the TransformEntry</p>
 
                         <a href="Classes/TransformEntry.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1817,7 +1858,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the Groups</p>
 
                         <a href="Classes/Groups.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1845,7 +1886,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the AccountHash</p>
 
                         <a href="Classes/AccountHash.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1873,7 +1914,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the BlockHash</p>
 
                         <a href="Classes/BlockHash.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1901,7 +1942,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the DeployHash</p>
 
                         <a href="Classes/DeployHash.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1929,7 +1970,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the PublicKey</p>
 
                         <a href="Classes/PublicKey.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1957,7 +1998,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the JsonEraValidators</p>
 
                         <a href="Classes/JsonEraValidators.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1985,7 +2026,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the MinimalBlockInfo</p>
 
                         <a href="Classes/MinimalBlockInfo.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2013,7 +2054,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the NamedCLTypeArg</p>
 
                         <a href="Classes/NamedCLTypeArg.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2041,7 +2082,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the NamedKey</p>
 
                         <a href="Classes/NamedKey.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2069,7 +2110,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the NextUpgrade</p>
 
                         <a href="Classes/NextUpgrade.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2153,7 +2194,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the ProtocolVersion</p>
 
                         <a href="Classes/ProtocolVersion.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2181,7 +2222,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the RuntimeArgs</p>
 
                         <a href="Classes/RuntimeArgs.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2209,7 +2250,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class supports the getting of StoredValue from Json String</p>
 
                         <a href="Classes/StoredValueHelper.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2237,7 +2278,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the Transfer</p>
 
                         <a href="Classes/Transfer.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2265,7 +2306,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the URef</p>
 
                         <a href="Classes/URef.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2293,7 +2334,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the UnbondingPurse</p>
 
                         <a href="Classes/UnbondingPurse.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2321,7 +2362,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the VestingSchedule</p>
 
                         <a href="Classes/VestingSchedule.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2349,7 +2390,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class supports the getting of GetDeployParams from Json String - build the param for POST method sending to RPC method</p>
 
                         <a href="Classes/GetDeployParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2377,7 +2418,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetDeployResult</p>
 
                         <a href="Classes/GetDeployResult.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2405,7 +2446,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetPeersResult, in which the most important information is the PeerMap object contains the peer list of type PeerEntry</p>
 
                         <a href="Classes/GetPeersResult.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2433,7 +2474,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class supports the getting of GetStatusResult from Json String</p>
 
                         <a href="Classes/GetStatus.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2461,7 +2502,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetStatusResult, in which the peer list is declared in a PeerMap object</p>
 
                         <a href="Classes/GetStatusResult.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2573,7 +2614,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the Big number of type U512. The value is stored in String format and then parsed as number.</p>
 
                         <a href="Classes/U512Class.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2601,7 +2642,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the Big number of type U256. The value is stored in String format and then parsed as number.</p>
 
                         <a href="Classes/U256Class.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2629,7 +2670,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the Big number of type U256. The value is stored in String format and then parsed as number.</p>
 
                         <a href="Classes/U128Class.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2685,7 +2726,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the NamedArg</p>
 
                         <a href="Classes/NamedArg.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2703,9 +2744,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16CasperSDKInSwift16DeployModuleByteC"></a>
-                    <a name="//apple_ref/swift/Class/DeployModuleByte" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift16DeployModuleByteC">DeployModuleByte</a>
+                    <a name="/s:16CasperSDKInSwift21CLTypeSerializeHelperC"></a>
+                    <a name="//apple_ref/swift/Class/CLTypeSerializeHelper" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift21CLTypeSerializeHelperC">CLTypeSerializeHelper</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2713,15 +2754,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>class for CLType and CLValue serialization</p>
 
-                        <a href="Classes/DeployModuleByte.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/CLTypeSerializeHelper.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployModuleByte</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CLTypeSerializeHelper</span></code></pre>
 
                         </div>
                       </div>
@@ -2731,9 +2772,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16CasperSDKInSwift26DeployStoredContractByHashC"></a>
-                    <a name="//apple_ref/swift/Class/DeployStoredContractByHash" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift26DeployStoredContractByHashC">DeployStoredContractByHash</a>
+                    <a name="/s:16CasperSDKInSwift19DeploySerializationC"></a>
+                    <a name="//apple_ref/swift/Class/DeploySerialization" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift19DeploySerializationC">DeploySerialization</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2741,15 +2782,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class for Deploy serialization</p>
 
-                        <a href="Classes/DeployStoredContractByHash.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/DeploySerialization.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployStoredContractByHash</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeploySerialization</span></code></pre>
 
                         </div>
                       </div>
@@ -2759,9 +2800,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16CasperSDKInSwift10DeployArgsC"></a>
-                    <a name="//apple_ref/swift/Class/DeployArgs" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift10DeployArgsC">DeployArgs</a>
+                    <a name="/s:16CasperSDKInSwift25DeployHeaderSerializationC"></a>
+                    <a name="//apple_ref/swift/Class/DeployHeaderSerialization" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift25DeployHeaderSerializationC">DeployHeaderSerialization</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2769,15 +2810,71 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class for Deploy Header  serialization</p>
 
-                        <a href="Classes/DeployArgs.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/DeployHeaderSerialization.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployArgs</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployHeaderSerialization</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift32ExecutableDeployItemSerializatonC"></a>
+                    <a name="//apple_ref/swift/Class/ExecutableDeployItemSerializaton" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift32ExecutableDeployItemSerializatonC">ExecutableDeployItemSerializaton</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class for ExecutableDeployItem  serialization</p>
+
+                        <a href="Classes/ExecutableDeployItemSerializaton.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ExecutableDeployItemSerializaton</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift27DeployApprovalSerializationC"></a>
+                    <a name="//apple_ref/swift/Class/DeployApprovalSerialization" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift27DeployApprovalSerializationC">DeployApprovalSerialization</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class for Approval serialization</p>
+
+                        <a href="Classes/DeployApprovalSerialization.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployApprovalSerialization</span></code></pre>
 
                         </div>
                       </div>
@@ -2797,7 +2894,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class supports the getting of GetAuctionInfoResult from Json String</p>
 
                         <a href="Classes/GetAuctionInfo.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2825,7 +2922,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetAuctionInfoResult</p>
 
                         <a href="Classes/GetAuctionInfoResult.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2853,7 +2950,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetBalanceParams</p>
 
                         <a href="Classes/GetBalanceParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2881,7 +2978,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetBalanceResult</p>
 
                         <a href="Classes/GetBalanceResult.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2909,7 +3006,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetDictionaryItemParams, used for sending parameter when call state_get_dictionary_item RPC method</p>
 
                         <a href="Classes/GetDictionaryItemParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2937,7 +3034,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetItemParams, used for sending parameter when call state_get_item RPC method</p>
 
                         <a href="Classes/GetItemParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2965,7 +3062,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class represents the GetItemResult, the result retrieved back when call state_get_item RPC method</p>
 
                         <a href="Classes/GetItemResult.html" class="slightly-smaller">See more</a>
                       </div>
@@ -2993,7 +3090,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class supports the getting of JsonBid from Json string</p>
 
                         <a href="Classes/JsonBid.html" class="slightly-smaller">See more</a>
                       </div>
@@ -3021,7 +3118,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class supports the getting of JsonBids from Json string</p>
 
                         <a href="Classes/JsonBids.html" class="slightly-smaller">See more</a>
                       </div>
@@ -3049,7 +3146,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class supports the getting of JsonDelegator from Json string</p>
 
                         <a href="Classes/JsonDelegator.html" class="slightly-smaller">See more</a>
                       </div>
@@ -3234,7 +3331,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-02-14)</p>
+          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-03-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>

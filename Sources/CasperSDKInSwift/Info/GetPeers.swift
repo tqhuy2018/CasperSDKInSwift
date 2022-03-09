@@ -1,9 +1,18 @@
 import Foundation
 
+/**
+ Class supports the getting of peer list from Json String
+ */
 class GetPeers  {
+    /**
+       Get peer list  from Json string.
+       - Parameter : a Json String represents the peer list
+       - Returns: GetPeersResult object, which contains the peer list
+       */
+
     public static func getPeers(from:[String:Any]) throws -> GetPeersResult {
         do {
-            var getPeerResult:GetPeersResult = GetPeersResult();
+            let getPeerResult:GetPeersResult = GetPeersResult();
             if let result = from["result"] as? [String:Any] {
                 if let api_version = result["api_version"] as? String {
                     let protocolVersion:ProtocolVersion = ProtocolVersion();

@@ -25,7 +25,7 @@ class Utils {
             return "\(totalHour)h"
         } else if m>miniuteInMilisecond {
             let totalMinute = m/miniuteInMilisecond
-            return "\(miniuteInMilisecond)m"
+            return "\(totalMinute)m"
         } else if m>secondInMillisecond {
             let totalSecond = m/secondInMillisecond
             return "\(totalSecond)s"
@@ -33,21 +33,109 @@ class Utils {
             return ""
         }
     }
+    
+    //value parse based on this site https://docs.rs/humantime/latest/humantime/fn.parse_duration.html
+    
     public static func ttlToMilisecond(ttl:String)->UInt64 {
-        if ttl.contains("day") {
+        if ttl.contains(" ") {
+            let elements = ttl.components(separatedBy: " ")
+            let totalElement = elements.count;
+            var valueBack:UInt64 = UInt64(0);
+            for i in 0 ... totalElement - 1 {
+                valueBack = valueBack + ttlToMilisecond(ttl: elements[i])
+            }
+            return valueBack;
+        }
+        if ttl.contains("days") {//day
+            let index = ttl.index(ttl.endIndex,offsetBy: -4)
+            let day64 = UInt64(String(ttl[..<index]))! * 24 * 3600 * 1000
+            return day64
+        }
+        else if ttl.contains("day") {//day
             let index = ttl.index(ttl.endIndex,offsetBy: -3)
             let day64 = UInt64(String(ttl[..<index]))! * 24 * 3600 * 1000
             return day64
-        } else if ttl.contains("m") {
+        }else if ttl.contains("d") {//day
+            let index = ttl.index(ttl.endIndex,offsetBy: -1)
+            let day64 = UInt64(String(ttl[..<index]))! * 24 * 3600 * 1000
+            return day64
+        } else if ttl.contains("months") {
+            let index = ttl.index(ttl.endIndex,offsetBy: -6)
+            let h64 = UInt64(String(ttl[..<index]))!
+            let result = h64 * 3600 * 1000 * 24 * 30 + h64 * 3600 * 440 * 24
+            return result
+        } else if ttl.contains("month") {
+            let index = ttl.index(ttl.endIndex,offsetBy: -5)
+            let h64 = UInt64(String(ttl[..<index]))!
+            let result = h64 * 3600 * 1000 * 24 * 30 + h64 * 3600 * 440 * 24
+            return result
+        } else if ttl.contains("M") {
+            let index = ttl.index(ttl.endIndex,offsetBy: -1)
+            let h64 = UInt64(String(ttl[..<index]))!
+            let result = h64 * 3600 * 1000 * 24 * 30 + h64 * 3600 * 440 * 24
+            return result
+        }  else if ttl.contains("minutes") {//minute
+            let index = ttl.index(ttl.endIndex,offsetBy:-7)
+            let m64 = UInt64(String(ttl[..<index]))! * 60 * 1000
+            return m64
+        }else if ttl.contains("minute") {//minute
+            let index = ttl.index(ttl.endIndex,offsetBy:-6)
+            let m64 = UInt64(String(ttl[..<index]))! * 60 * 1000
+            return m64
+        }else if ttl.contains("min") {//minute
+            let index = ttl.index(ttl.endIndex,offsetBy:-3)
+            let m64 = UInt64(String(ttl[..<index]))! * 60 * 1000
+            return m64
+        }else if ttl.contains("m") {//minute
             let index = ttl.index(ttl.endIndex,offsetBy:-1)
             let m64 = UInt64(String(ttl[..<index]))! * 60 * 1000
             return m64
-        } else if ttl.contains("h") {
+        } else if ttl.contains("hours") {//hour
+            let index = ttl.index(ttl.endIndex,offsetBy: -5)
+            let h64 = UInt64(String(ttl[..<index]))! * 3600 * 1000
+            return h64
+        }  else if ttl.contains("hour") {//hour
+            let index = ttl.index(ttl.endIndex,offsetBy: -4)
+            let h64 = UInt64(String(ttl[..<index]))! * 3600 * 1000
+            return h64
+        } else if ttl.contains("hr") {//hour
+            let index = ttl.index(ttl.endIndex,offsetBy: -2)
+            let h64 = UInt64(String(ttl[..<index]))! * 3600 * 1000
+            return h64
+        }  else if ttl.contains("h") {//hour
             let index = ttl.index(ttl.endIndex,offsetBy: -1)
             let h64 = UInt64(String(ttl[..<index]))! * 3600 * 1000
             return h64
+        }  else if ttl.contains("weeks") {
+            let index = ttl.index(ttl.endIndex,offsetBy: -5)
+            let h64 = UInt64(String(ttl[..<index]))! * 3600 * 1000 * 24 * 7
+            return h64
+        } else if ttl.contains("week") {
+            let index = ttl.index(ttl.endIndex,offsetBy: -4)
+            let h64 = UInt64(String(ttl[..<index]))! * 3600 * 1000 * 24 * 7
+            return h64
+        } else if ttl.contains("w") {
+            let index = ttl.index(ttl.endIndex,offsetBy: -1)
+            let h64 = UInt64(String(ttl[..<index]))! * 3600 * 1000 * 24 * 7
+            return h64
+        } else if ttl.contains("years") {
+            let index = ttl.index(ttl.endIndex,offsetBy: -5)
+            let h64 = UInt64(String(ttl[..<index]))!
+            let result = h64 * 3600 * 1000 * 24 * 365 + h64 * 3600 * 250 * 24
+            return result
+            
+        } else if ttl.contains("year") {
+            let index = ttl.index(ttl.endIndex,offsetBy: -4)
+            let h64 = UInt64(String(ttl[..<index]))!
+            let result = h64 * 3600 * 1000 * 24 * 365 + h64 * 3600 * 250 * 24
+            return result
+        } else if ttl.contains("y") {
+            let index = ttl.index(ttl.endIndex,offsetBy: -1)
+            let h64 = UInt64(String(ttl[..<index]))!
+            let result = h64 * 3600 * 1000 * 24 * 365 + h64 * 3600 * 250 * 24
+            return result
         }
-        return 1
+        return 0
     }
     public static func dateStrToMilisecond(dateStr: String) -> UInt64 {
         let elements = dateStr.components(separatedBy: ".")
@@ -63,6 +151,66 @@ class Utils {
         let date = dateFormatter.date(from:realStr)!
         let ret :UInt64 = UInt64(date.millisecondsSince1970) + milisecondU64
         return ret;
+    }
+    
+    ///Supporter method for sorting U128 Array
+    public static func sortU128Array( array:inout [U128Class]) {
+        let total = array.count;
+        for _ in 0...total {
+            for j in 0 ... total - 2 {
+                if !Utils.isBigNum1SmallerThanBigNum2(num1: array[j].valueInStr, num2: array[j+1].valueInStr) {
+                    let temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                }
+            }
+        }
+    }
+    ///Supporter method for sorting U256 Array
+    public static func sortU256Array( array:inout [U256Class]) {
+        let total = array.count;
+        for _ in 0...total {
+            for j in 0 ... total - 2 {
+                if !Utils.isBigNum1SmallerThanBigNum2(num1: array[j].valueInStr, num2: array[j+1].valueInStr) {
+                    let temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                }
+            }
+        }
+    }
+    ///Supporter method for sorting U512 Array
+    public static func sortU512Array( array:inout [U512Class]) {
+        let total = array.count;
+        for _ in 0...total {
+            for j in 0 ... total - 2 {
+                if !Utils.isBigNum1SmallerThanBigNum2(num1: array[j].valueInStr, num2: array[j+1].valueInStr) {
+                    let temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                }
+            }
+        }
+    }
+    ///Support function to compare two big number, such as U128 or U256 or U512, return true if num1 < num2 and vice versa
+    public static func isBigNum1SmallerThanBigNum2(num1:String,num2:String) -> Bool {
+        //if num1 < num2 return true
+        let num1Length = num1.count;
+        let num2Length = num2.count;
+        if num1Length > num2Length {
+           
+            return false
+        } else if num1Length < num2Length {
+           
+            return true
+        } else { //num1Length == num2Length
+            for i in 0 ... num1Length - 1 {
+                if UInt8(num1[i])! > UInt8(num2[i])! { //if num1>num2 at any index return false
+                    return false
+                }
+            }
+            return true;
+        }
     }
 }
 
@@ -92,8 +240,6 @@ extension String {
         let nums: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         return Set(self).isSubset(of: nums)
     }
-}
-extension String {
     func utf8DecodedString()-> String {
         let data = self.data(using: .utf8)
         let message = String(data: data!, encoding: .nonLossyASCII) ?? ""
@@ -105,4 +251,29 @@ extension String {
         let text = String(data: messageData!, encoding: .utf8) ?? ""
         return text
     }
+    var length: Int {
+        return count
+    }
+
+    subscript (i: Int) -> String {
+        return self[i ..< i + 1]
+    }
+
+    func substring(fromIndex: Int) -> String {
+        return self[min(fromIndex, length) ..< length]
+    }
+
+    func substring(toIndex: Int) -> String {
+        return self[0 ..< max(0, toIndex)]
+    }
+
+    subscript (r: Range<Int>) -> String {
+        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
+                                            upper: min(length, max(0, r.upperBound))))
+        let start = index(startIndex, offsetBy: range.lowerBound)
+        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
+        return String(self[start ..< end])
+    }
 }
+
+

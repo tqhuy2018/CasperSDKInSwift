@@ -17,7 +17,7 @@
     <a title="CLValue Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (0% documented)</p>
+        <p><a href="../index.html"> Docs</a> (50% documented)</p>
         <div class="header-right">
           <form role="search" action="../search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -78,6 +78,12 @@
                 <a href="../Classes/CLValue.html">CLValue</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CLValueToJson.html">CLValueToJson</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CLValueWrapperToJsonString.html">CLValueWrapperToJsonString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/CasperSDK.html">CasperSDK</a>
               </li>
               <li class="nav-group-task">
@@ -105,9 +111,6 @@
                 <a href="../Classes/DeployApprovalSerialization.html">DeployApprovalSerialization</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DeployArgs.html">DeployArgs</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/DeployHash.html">DeployHash</a>
               </li>
               <li class="nav-group-task">
@@ -120,19 +123,19 @@
                 <a href="../Classes/DeployInfo.html">DeployInfo</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DeployModuleByte.html">DeployModuleByte</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/DeploySerialization.html">DeploySerialization</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DeployStoredContractByHash.html">DeployStoredContractByHash</a>
+                <a href="../Classes/DeployUtil.html">DeployUtil</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Digest.html">Digest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DisableVersion.html">DisableVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Ed25519Cryto.html">Ed25519Cryto</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/EntryPoint.html">EntryPoint</a>
@@ -160,9 +163,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ExecutionResultHelper.html">ExecutionResultHelper</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes.html#/s:16CasperSDKInSwift22ExecutionSerializationC">ExecutionSerialization</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/GetAuctionInfo.html">GetAuctionInfo</a>
@@ -273,6 +273,9 @@
                 <a href="../Classes/NamedArg.html">NamedArg</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/NamedArgJson.html">NamedArgJson</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/NamedCLTypeArg.html">NamedCLTypeArg</a>
               </li>
               <li class="nav-group-task">
@@ -301,6 +304,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RuntimeArgs.html">RuntimeArgs</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Secp256k1Crypto.html">Secp256k1Crypto</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/StoredValueHelper.html">StoredValueHelper</a>
@@ -380,16 +386,36 @@
                 <a href="../Enums/ExecutionResult.html">ExecutionResult</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/GenerateKeyError.html">GenerateKeyError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/OpKind.html">OpKind</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/PemFileHandlerError.html">PemFileHandlerError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/SeigniorageAllocation.html">SeigniorageAllocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SignActionError.html">SignActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/StoredValue.html">StoredValue</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/Transform.html">Transform</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
               </li>
             </ul>
           </li>
@@ -406,7 +432,13 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Class for CLValue with 3 attributes:</p>
+
+<ul>
+<li>bytes - the serialization of the CLValue</li>
+<li>cl_type: of type CLType</li>
+<li>parsed: of type CLValueWrapper, hold the CLValue and its corresponding CLType</li>
+</ul>
 
           </section>
           <section class="section task-group-section">
@@ -425,7 +457,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The serialization of CLValue</p>
 
                       </div>
                       <div class="declaration">
@@ -452,7 +484,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The CLType of the CLValue</p>
 
                       </div>
                       <div class="declaration">
@@ -479,7 +511,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The actual value of CLValue, which is wrapped in an enumration object CLValueWrapper</p>
 
                       </div>
                       <div class="declaration">
@@ -489,6 +521,132 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">parsed</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span></code></pre>
 
                         </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC18getParsedValueBool02clG7WrapperSbAA0dJ0O_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getParsedValueBool(clValueWrapper:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC18getParsedValueBool02clG7WrapperSbAA0dJ0O_tFZ">getParsedValueBool(clValueWrapper:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getParsedValueBool</span><span class="p">(</span><span class="nv">clValueWrapper</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC20getParsedValueString02clG7WrapperSSAA0dJ0O_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getParsedValueString(clValueWrapper:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC20getParsedValueString02clG7WrapperSSAA0dJ0O_tFZ">getParsedValueString(clValueWrapper:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Function to get  parsed value in form of string from CLValueWrapper object</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getParsedValueString</span><span class="p">(</span><span class="nv">clValueWrapper</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValueWrapper.parsed value in form of string</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC17isCLTypePrimitive7cl_typeSbAA0F0O_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/isCLTypePrimitive(cl_type:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC17isCLTypePrimitive7cl_typeSbAA0F0O_tFZ">isCLTypePrimitive(cl_type:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Function to check if a CLType is primitive, which means no recursive call to CLType inside</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">isCLTypePrimitive</span><span class="p">(</span><span class="nv">cl_type</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if the CLType is primitive, false if not.
+The following CLType is primitive: Bool, I32, I64, U8, U32, U64, U128, U256, U512, Unit, String, Key, URef, PublicKey, Any
+The following CLType is compound: BytesArray, Option, List, FixedList,Map,Tuple1, Tuple2, Tuple3, Result</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC15getCLTypeString7cl_typeSSAA0F0O_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getCLTypeString(cl_type:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC15getCLTypeString7cl_typeSSAA0F0O_tFZ">getCLTypeString(cl_type:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Function to get json data from CLType if the CLType is primitive, which mean the CLType does not contain recursive declaration to other CLType</p>
+
+<p>Function to get  CLValueWrapper type in String</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getCLTypeString</span><span class="p">(</span><span class="nv">cl_type</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>string represent the CLType of CLValueWrapper
+Example: If the CLValueWrapper of CLType Bool, then the return value will be &ldquo;Bool&rdquo;
+If the CLValueWrapper of CLType I32, then the return value will be &ldquo;I32&rdquo;</p>
                       </div>
                     </section>
                   </div>
@@ -506,7 +664,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name &ldquo;from&rdquo;, and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter</p>
 
                       </div>
                       <div class="declaration">
@@ -516,6 +674,415 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getCLValueWrapperDirect</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValueWrapper object</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC23getRawValueOfStringType02clG0SSAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getRawValueOfStringType(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC23getRawValueOfStringType02clG0SSAA0D7WrapperO_tFZ">getRawValueOfStringType(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get raw value for CLValueWrapper, of type .String(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .String(value) to just value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getRawValueOfStringType</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the string value inside the clValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC26getRawValueOfPublicKeyType02clG0SSAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getRawValueOfPublicKeyType(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC26getRawValueOfPublicKeyType02clG0SSAA0D7WrapperO_tFZ">getRawValueOfPublicKeyType(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get raw value for CLValueWrapper, of type .PublicKey(value). Use this function for CLValue json exporter. This function unwrap the CLValueWrapper with value .PublicKey(value) to just value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getRawValueOfPublicKeyType</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the string value inside the PublicKey</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC17getRawValueOfURef02clG0SSAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getRawValueOfURef(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC17getRawValueOfURef02clG0SSAA0D7WrapperO_tFZ">getRawValueOfURef(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get raw value for CLValueWrapper, of type .URef(value). Use this function for CLValue json exporter. This function unwrap the CLValueWrapper with value .URef(value) to just value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getRawValueOfURef</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the string value inside the URef</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC16getRawValueOfKey02clG0SDyS2SGAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getRawValueOfKey(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC16getRawValueOfKey02clG0SDyS2SGAA0D7WrapperO_tFZ">getRawValueOfKey(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get raw value for CLValueWrapper, of type .Key. Use this function for CLValue json exporter. This function unwrap the CLValueWrapper with value .Key(String) to just value inside of the Key</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getRawValueOfKey</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the string value inside the Key. The value will be returned as [String:String], Depends on Key type, the key is &ldquo;Account&rdquo;, &ldquo;Hash&rdquo; or &ldquo;URef&rdquo;.
+For example if the Key is .Key(&ldquo;account-hash-c6d93dd827202f3b37297382b1cb9269c07d71a79a49824bb1a008c650a04473&rdquo;) then the return value will be
+&ldquo;Account&rdquo;:&ldquo;c6d93dd827202f3b37297382b1cb9269c07d71a79a49824bb1a008c650a04473&rdquo;</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC16getRawValueOfI3202clG0s5Int32VAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getRawValueOfI32(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC16getRawValueOfI3202clG0s5Int32VAA0D7WrapperO_tFZ">getRawValueOfI32(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get raw value for CLValueWrapper, of type .I32(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .I32(value) to just value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getRawValueOfI32</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the I32 value inside the clValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC16getRawValueOfI6402clG0s5Int64VAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getRawValueOfI64(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC16getRawValueOfI6402clG0s5Int64VAA0D7WrapperO_tFZ">getRawValueOfI64(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get raw value for CLValueWrapper, of type .I64(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .I64(value) to just value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getRawValueOfI64</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int64</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the I64 value inside the clValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC15getRawValueOfU802clG0s5UInt8VAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getRawValueOfU8(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC15getRawValueOfU802clG0s5UInt8VAA0D7WrapperO_tFZ">getRawValueOfU8(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get raw value for CLValueWrapper, of type .UInt8(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .UInt8(value) to just value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getRawValueOfU8</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt8</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the UInt8 value inside the clValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC16getRawValueOfU3202clG0s6UInt32VAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getRawValueOfU32(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC16getRawValueOfU3202clG0s6UInt32VAA0D7WrapperO_tFZ">getRawValueOfU32(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get raw value for CLValueWrapper, of type .UInt32(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .UInt32(value) to just value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getRawValueOfU32</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt32</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the UInt32 value inside the clValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC16getRawValueOfU6402clG0s6UInt64VAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getRawValueOfU64(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC16getRawValueOfU6402clG0s6UInt64VAA0D7WrapperO_tFZ">getRawValueOfU64(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get raw value for CLValueWrapper, of type .UInt64(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .UInt64(value) to just value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getRawValueOfU64</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt64</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the UInt64 value inside the clValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC17getRawValueOfU12802clG0AA0I5ClassCAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getRawValueOfU128(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC17getRawValueOfU12802clG0AA0I5ClassCAA0D7WrapperO_tFZ">getRawValueOfU128(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get raw value for CLValueWrapper, of type .U128(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .U128(value) to just value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getRawValueOfU128</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/U128Class.html">U128Class</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the U128 value inside the clValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC17getRawValueOfU25602clG0AA0I5ClassCAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getRawValueOfU256(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC17getRawValueOfU25602clG0AA0I5ClassCAA0D7WrapperO_tFZ">getRawValueOfU256(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get raw value for CLValueWrapper, of type .U256(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .U256(value) to just value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getRawValueOfU256</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/U256Class.html">U256Class</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the U256 value inside the clValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC17getRawValueOfU51202clG0AA0I5ClassCAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getRawValueOfU512(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC17getRawValueOfU51202clG0AA0I5ClassCAA0D7WrapperO_tFZ">getRawValueOfU512(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get raw value for CLValueWrapper, of type .U512(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .U512(value) to just value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getRawValueOfU512</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/U512Class.html">U512Class</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the U512 value inside the clValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift7CLValueC17getComparableType7clValueSSAA0D7WrapperO_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getComparableType(clValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift7CLValueC17getComparableType7clValueSSAA0D7WrapperO_tFZ">getComparableType(clValue:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check if the clValue is comparable, for example Int, String can be compare to sort ascending, but List or Map or Tuple can not. Use this function for CLValue Map serialization.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getComparableType</span><span class="p">(</span><span class="nv">clValue</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>String represent the type of the comparable clValue, &ldquo;none&rdquo; if not.</p>
                       </div>
                     </section>
                   </div>
@@ -533,7 +1100,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name &ldquo;from&rdquo;, and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter</p>
 
                       </div>
                       <div class="declaration">
@@ -543,6 +1110,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getCLValueWrapper</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">,</span> <span class="nv">keyStr</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"parsed"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValueWrapper object</p>
                       </div>
                     </section>
                   </div>
@@ -560,7 +1131,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLValue primitive from Json string, with given CLType for that CLValue. The Json string is from the input with name &ldquo;from&rdquo;, and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter. This function deal with CLType primitive of no recursive part in side that CLType, such as Bool, String, Int</p>
 
                       </div>
                       <div class="declaration">
@@ -570,6 +1141,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getCLValueWrapperPrimitiveFromRaw</span><span class="p">(</span><span class="nv">input</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValueWrapper object</p>
                       </div>
                     </section>
                   </div>
@@ -587,7 +1162,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLValue primitive from  a parameter of type primitive (with no recursive part inside), with given CLType for that CLValue. The string is from the input with name &ldquo;from&rdquo;, and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter. This function deal with CLType primitive of no recursive part in side that CLType, such as Bool, String, Int</p>
 
                       </div>
                       <div class="declaration">
@@ -597,6 +1172,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getCLValueWrapperPrimitive</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValueWrapper object</p>
                       </div>
                     </section>
                   </div>
@@ -614,7 +1193,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLValue from  a parameter of type compound (with  recursive part inside), with given CLType for that CLValue. The string is from the input with name &ldquo;from&rdquo;, and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter. This function deal with CLType compound with recursive part in side that CLType, such as List, Map, Tuple1, Tuple2, Tuple3 &hellip;</p>
 
                       </div>
                       <div class="declaration">
@@ -624,6 +1203,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getCLValueWrapperCompound</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValueWrapper object</p>
                       </div>
                     </section>
                   </div>
@@ -641,7 +1224,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLValue with full value: bytes, parsed and cl_type. This function do the task of retrieving information of bytes,parsed and cl_type from the string map [String:Any] from the input.</p>
 
                       </div>
                       <div class="declaration">
@@ -652,6 +1235,10 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValue object, which hold the 3 kinds of value: bytes, parsed and cl_type</p>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -660,7 +1247,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-02-14)</p>
+          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-03-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
