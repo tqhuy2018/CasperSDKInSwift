@@ -13,6 +13,8 @@ final class CasperSDKInSwiftTests: XCTestCase {
         // TestCLTypeSerialization.swift
         // TestCLValueSerialization.swift
         // TestDeploySerialization.swift
+        //let putDeploy:TestPutDeploy = TestPutDeploy()
+        //putDeploy.testAll()
         // M1 & M2 test cases
         let casperSDK: CasperSDK = CasperSDK(url: "https://node-clarity-testnet.make.services/rpc")
         // casperSDK.setMethodUrl(url: "https: // node-clarity-mainnet.make.services/rpc")
